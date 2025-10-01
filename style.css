@@ -230,26 +230,6 @@ header.hero::before {
 }
 
 /* ========================================= */
-/* ==== AJUSTES PARA LA IMAGEN DEL HEADER EN MÓVIL ==== */
-/* ========================================= */
-
-@media (max-width: 768px) {
-  header.hero {
-    /* 1. Cambiamos el punto de anclaje de la imagen.
-       En lugar de centrarla, le decimos que priorice la parte superior. */
-    background-position: center top;
-
-    /* 2. Desactivamos el efecto parallax en móvil.
-       Esto mejora mucho el rendimiento y la compatibilidad. */
-    background-attachment: scroll;
-    
-    /* 3. (Opcional) Podemos darle un poco más de altura en móvil
-       para que la imagen tenga más espacio para mostrarse. */
-    min-height: 60vh;
-  }
-}
-
-/* ========================================= */
 /* ==== ESTILOS PARA EL MENÚ (VERSIÓN DINÁMICA) ==== */
 /* ========================================= */
 
@@ -315,19 +295,7 @@ header.hero::before {
     color: #000; /* Un negro más intenso para destacar */
 }
 
-/* ---- Responsive para móviles ---- */
-@media (max-width: 768px) {
-  .sticky-nav {
-    padding: 12px 20px;
-  }
-  .sticky-nav ul {
-    gap: 20px;
-  }
-  .sticky-nav a {
-    /* MODIFICADO: Tamaño de letra reducido también en móvil */
-    font-size: 13px; 
-  }
-}
+
 
 /* Restaura la font original per al botó del banner */
 .hero-content .btn {
@@ -594,13 +562,7 @@ header.hero::before {
   fill: #555;
 }
 
-/* Ajuste para móviles */
-@media (max-width: 768px) {
-  .iban-container {
-    font-size: 14px;
-    padding: 10px 14px;
-  }
-}
+
 
 .iban-holder {
   font-family: system-ui, -apple-system, sans-serif; /* Usa la fuente normal de la web */
@@ -649,8 +611,26 @@ header.hero::before {
   display: none;
 }
 
+/* ======================================================= */
+/* ==== ESTILOS UNIFICADOS PARA DISPOSITIVOS MÓVILES ==== */
+/* ======================================================= */
+
 @media (max-width: 768px) {
-  /* Hacemos visible el botón en móviles */
+
+  /* --- Ajustes del Header --- */
+  header.hero {
+    background-position: center top;
+    background-attachment: scroll;
+    min-height: 60vh;
+  }
+
+  /* --- Ajustes de la sección de Regalo --- */
+  .iban-container {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  /* --- Menú Hamburguesa --- */
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -661,12 +641,10 @@ header.hero::before {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 2000; /* Asegura que esté por encima de todo */
-
-    /* Posición fija en la esquina superior derecha */
+    z-index: 2000;
     position: fixed;
     top: 15px;
-    right: 20px;
+    left: 20px;
   }
 
   .hamburger .line {
@@ -679,12 +657,10 @@ header.hero::before {
     transform-origin: 1px;
   }
   
-  /* Estilo del botón cuando la barra de navegación tiene fondo */
   .sticky-nav.scrolled + .hamburger .line {
     background: #333;
   }
   
-  /* --- Animación del icono a una 'X' --- */
   .hamburger[aria-expanded="true"] .line:nth-child(1) {
     transform: rotate(45deg);
   }
@@ -696,30 +672,22 @@ header.hero::before {
     transform: rotate(-45deg);
   }
   .hamburger[aria-expanded="true"] .line {
-      background: #333; /* La 'X' siempre será oscura para contrastar */
+      background: #333;
   }
 
-
-  /* --- Estilo del panel de navegación desplegable --- */
+  /* --- Panel de navegación desplegable --- */
   .nav-links {
-    /* Oculta los enlaces de la barra principal en móvil */
     position: fixed;
     z-index: 1999;
-    inset: 0 0 0 30%; /* Ocupa el 70% derecho de la pantalla */
-    
-    /* Cambiamos a layout vertical */
+    inset: 0 30% 0 0; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
     padding: min(20vh, 10rem) 2em;
-
-    /* Fondo semi-transparente que combina con la web */
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
-    
-    /* Animación para deslizar desde la derecha */
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition: transform 350ms ease-out;
   }
 
@@ -727,11 +695,10 @@ header.hero::before {
     transform: translateX(0%);
   }
 
-  /* Estilo de los enlaces dentro del menú desplegable */
   .nav-links a {
-    color: #333; /* Texto oscuro para que sea legible */
+    color: #333;
     text-shadow: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
   }
 
