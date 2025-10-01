@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Laura & Nil</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="sticky-nav">
+        <ul>
+            <li><a href="#top">Confirma Assistencia</a></li>
+            <li><a href="#location">Horaris i Ubicació</a></li>
+            <li><a href="#gift">Regal</a></li>
+        </ul>
+    </nav>
+    <header class="hero" role="banner" aria-label="Portada boda Laura y Nil" id="top">
+    <!-- Logo arriba a la izquierda -->
+        <a class="logo" href="#top" aria-label="Inicio">
+            <img
+                src="logo.png"
+                alt="Logo Laura y Nil"
+                height="150" />
+        </a>
+    <!-- Contenido centrado -->
+        <div class="hero-content">
+            <h1>Laura &amp; Nil</h1>
+            <p>13.06.2026, Mas d'Osor</p>
+            <a class="btn" href="https://forms.gle/UPQAaie7obC1C1HL6" target="_blank" rel="noopener noreferrer" aria-label="Confirmar asistencia">CONFIRMA ASSISTENCIA</a>
+        </div>
+    </header>
+    <section class="text-section">
+        <div class="text-container">
+            <p>
+                Benvinguts a la nostra web! Ens casem (sí, ho heu llegit bé 😅) i volem que sigueu part d’aquesta festa d’amor, 
+                música i bon menjar. Aquí trobareu tota la informació perquè no se us escapi res. 
+                Ens fa molta il·lusió poder compartir aquest moment tan significatiu amb tots vosaltres. 
+                Prepara’t per riure, ballar i brindar amb nosaltres!
+            </p>
+        </div>
+    </section>
+    <section class="info-split" id="location">
+        <div class="info-split__media">
+            <h2>Horaris</h2>
+            <img src="timings.png" alt="Imagen del lugar de la boda" />
+        </div>
+
+        <div class="info-split__content">
+            <h2>Ubicació</h2>
+            <div class="map-container">
+                <iframe
+                    src="https://maps.google.com/maps?q=41.862811,2.352810&hl=es;z=15&output=embed"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <section class="gift-section" id="gift">
+        <div class="gift-content">
+            <img src="regalo.png" alt="Icono de regalo" class="gift-icon">
+            <h2>Un detall per a nosaltres</h2>
+            <p>El vostre regal més gran és la vostra companyia...</p>
+            
+            <div class="iban-container">
+                <span id="iban-number">ES00 0000 0000 0000 0000 0000</span>
+                <button id="copy-button" title="Copiar IBAN">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></svg>
+                </button>
+                <span id="copy-popup" class="copy-popup">Copiat!</span>
+            </div>
+
+            <p class="iban-holder">Titular: Laura Guitart Pardellans & Nil Busquets</p>
+            
+        </div>
+    </section>
+
+    <script>
+    document.getElementById('copy-button').addEventListener('click', function() {
+        const ibanText = document.getElementById('iban-number').innerText;
+        const popup = document.getElementById('copy-popup');
+
+        navigator.clipboard.writeText(ibanText).then(() => {
+            // Muestra el pop-up añadiendo la clase 'show'
+            popup.classList.add('show');
+
+            // Oculta el pop-up después de 1.5 segundos
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 1500);
+        }).catch(err => {
+            console.error('Error al copiar el IBAN: ', err);
+        });
+    });
+    </script>
+    <section class="countdown-section">
+        <h2>Compte enrere</h2>
+        <div class="countdown-container">
+            <div class="countdown-item">
+                <div class="countdown-circle-container">
+                    <svg class="countdown-svg" width="120" height="120" viewBox="0 0 120 120">
+                        <circle class="bg"       r="50" cx="60" cy="60"></circle>
+                        <circle class="progress" id="days-progress" r="50" cx="60" cy="60"></circle>
+                    </svg>
+                    <div class="countdown-number" id="days">00</div>
+                </div>
+                <p class="countdown-label">Dies</p>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-circle-container">
+                    <svg class="countdown-svg">
+                        <circle class="bg" r="50" cx="60" cy="60"></circle>
+                        <circle class="progress" id="hours-progress" r="50" cx="60" cy="60"></circle>
+                    </svg>
+                    <div class="countdown-number" id="hours">00</div>
+                </div>
+                <p class="countdown-label">Hores</p>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-circle-container">
+                    <svg class="countdown-svg">
+                        <circle class="bg" r="50" cx="60" cy="60"></circle>
+                        <circle class="progress" id="minutes-progress" r="50" cx="60" cy="60"></circle>
+                    </svg>
+                    <div class="countdown-number" id="minutes">00</div>
+                </div>
+                <p class="countdown-label">Minuts</p>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-circle-container">
+                    <svg class="countdown-svg">
+                        <circle class="bg" r="50" cx="60" cy="60"></circle>
+                        <circle class="progress" id="seconds-progress" r="50" cx="60" cy="60"></circle>
+                    </svg>
+                    <div class="countdown-number" id="seconds">00</div>
+                </div>
+                <p class="countdown-label">Segons</p>
+            </div>
+        </div>
+    </section>
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <h2>Contacta amb nosaltres</h2>
+            <p>Contacta per resoldre dubtes sobre el casament.</p>
+        </div>
+
+        <form class="contact-form" name="contacto" method="POST" data-netlify="true" action="/gracias.html">
+            <div class="form-group">
+                <label for="name">Nom <span class="required">(required)</span></label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email <span class="required">(required)</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Missatge <span class="required">(required)</span></label>
+                <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+            <div class="form-group form-submit">
+                <button type="submit" class="submit-btn">Enviar</button>
+            </div>
+        </form>
+    </section>
+
+    <script>
+
+        // Estableix la data i hora del casament
+        const weddingDate = new Date("June 13, 2026 17:00:00").getTime();
+
+        // Elements del DOM
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        
+        const daysProgress = document.getElementById('days-progress');
+        const hoursProgress = document.getElementById('hours-progress');
+        const minutesProgress = document.getElementById('minutes-progress');
+        const secondsProgress = document.getElementById('seconds-progress');
+        
+        // El radi del cercle de progrés
+        const radius = daysProgress.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+
+        // Inicialitza els cercles
+        [daysProgress, hoursProgress, minutesProgress, secondsProgress].forEach(circle => {
+            circle.style.strokeDasharray = circumference;
+            circle.style.strokeDashoffset = circumference;
+        });
+
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                daysEl.innerHTML = "00";
+                hoursEl.innerHTML = "00";
+                minutesEl.innerHTML = "00";
+                secondsEl.innerHTML = "00";
+                // Assegura que els cercles quedin a 0
+                [daysProgress, hoursProgress, minutesProgress, secondsProgress].forEach(c => c.style.strokeDashoffset = circumference);
+                return;
+            }
+
+            // Càlculs de temps
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Actualitza els números (amb un 0 davant si cal)
+            daysEl.innerHTML = String(days).padStart(2, '0');
+            hoursEl.innerHTML = String(hours).padStart(2, '0');
+            minutesEl.innerHTML = String(minutes).padStart(2, '0');
+            secondsEl.innerHTML = String(seconds).padStart(2, '0');
+            
+            // Actualitza els cercles de progrés
+            // (Considerant 365 dies en un any per al cercle de dies)
+            daysProgress.style.strokeDashoffset = circumference - (days / 365) * circumference;
+            hoursProgress.style.strokeDashoffset = circumference - (hours / 24) * circumference;
+            minutesProgress.style.strokeDashoffset = circumference - (minutes / 60) * circumference;
+            secondsProgress.style.strokeDashoffset = circumference - (seconds / 60) * circumference;
+
+        }, 1000);
+        const nav = document.querySelector('.sticky-nav');
+        const navLinks = document.querySelectorAll('.sticky-nav a');
+        const sections = document.querySelectorAll('header[id], section[id]');
+
+        // Función para el fondo del menú al hacer scroll
+        function handleNavBackground() {
+            if (window.scrollY > 50) { // Si el scroll es mayor a 50px
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }
+
+        // Función para el enlace activo al hacer scroll
+        function handleActiveLink() {
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // La altura del menú es ~60px, usamos ese offset
+                if (pageYOffset >= sectionTop - 70) { 
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Escuchar el evento de scroll y ejecutar ambas funciones
+        window.addEventListener('scroll', function() {
+            handleNavBackground();
+            handleActiveLink();
+        });
+
+        // Ejecutar una vez al cargar la página por si no empieza arriba del todo
+        handleActiveLink();
+    </script>
+</body>
+</html>

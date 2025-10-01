@@ -1,0 +1,641 @@
+:root {
+  --hero-min-h: 70vh;
+  --text-color: #fff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* HERO a pantalla completa con imagen de fondo */
+header.hero {
+  position: relative;           /* ancestro posicionado para el logo */
+  min-height: var(--hero-min-h);
+  width: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--text-color);
+  text-align: center;
+  background: #000 url("image.jpg") center / cover no-repeat fixed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header.hero { background-attachment: scroll; }
+}
+
+/* Capa de oscurecido */
+header.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));
+}
+
+/* Logo arriba-izquierda por encima del overlay */
+.logo{
+  position:absolute;
+  top:8px;
+  right:16px;
+  z-index:3;                    /* sobre la capa ::before y el contenido */
+}
+
+.logo img {
+  display: block;
+  width: auto; /* Mantiene la proporción correcta de la imagen */
+  /* El logo tendrá:
+     - Un mínimo de 80px de alto.
+     - Un máximo de 150px de alto.
+     - Un tamaño flexible del 18% del ancho de la pantalla (18vw). */
+  height: clamp(80px, 18vw, 150px);
+}
+
+/* Contenido centrado */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+  max-width: 1000px;
+  font-family: 'Cinzel', serif;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(40px, 8vw, 80px);
+  line-height: 1.05;
+  font-family: "Charm", cursive;
+  font-weight: 400;              
+  text-transform: none;
+  letter-spacing: 1px;           
+}
+
+
+.hero p {
+  margin: 0 0 28px;
+  font-size: clamp(16px, 2.4vw, 22px);
+  font-family: "Charm", cursive;
+  opacity: .95;
+  font-weight: 400; /* Assegurem que el gruix sigui consistent amb el títol */
+  letter-spacing: 1.5px;
+}
+
+/* Botón estilo “RSVP” */
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 2px solid rgba(255,255,255,.9);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 8px;
+  backdrop-filter: saturate(140%) blur(2px);
+  background: rgba(255,255,255,.06);
+  transition: all .2s ease;
+}
+
+.btn:hover, .btn:focus {
+  background: #fff;
+  color: #111;
+}
+
+
+/* --- Ajuste para REDUCIR el tamaño del mapa en pantallas grandes --- */
+
+/* Cerca aquesta regla al teu style.css */
+.map-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 90%; /* Abans era 40%. Pots jugar amb aquest valor (ex: 80%, 90%) */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* El resto del código del mapa que ya tenías */
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilo para el enlace de la dirección */
+.address-link {
+  text-decoration: none; /* Quita el subrayado por defecto */
+  color: inherit; /* Hereda el color del texto normal */
+  transition: color .2s ease;
+}
+
+.address-link:hover {
+  color: #007bff; /* Cambia a un color azul al pasar el ratón */
+}
+
+/* ========================================= */
+/* ==== ESTILOS PARA LA SECCIÓN DE CONTACTO ==== */
+/* ========================================= */
+
+.contact-section {
+  background: #fff;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.contact-content h2 {
+  font-size: clamp(36px, 5vw, 50px);
+  font-weight: 400; /* Letra más fina */
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+
+.contact-content p {
+  max-width: 45ch;
+  margin: 0 auto 48px auto;
+  opacity: 0.8;
+  font-size: clamp(16px, 2.4vw, 18px);
+}
+
+/* Contenedor del formulario */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left; /* Alineamos las etiquetas a la izquierda */
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+/* Estilo para las etiquetas (Name, Email, Message) */
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.contact-form .required {
+  font-weight: 400;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Estilo para los campos de texto y el área de mensaje */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+  transition: border-color .2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #000; /* Resalta el borde al hacer clic */
+}
+
+.contact-form textarea {
+  resize: vertical; /* Permite al usuario ajustar la altura */
+}
+
+/* Estilo del botón "Enviar" */
+.submit-btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 50px; /* Para que sea totalmente redondeado */
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.8;
+}
+
+/* Centrar el botón */
+.form-submit {
+  text-align: center;
+  margin-top: 32px;
+}
+
+/* ========================================= */
+/* ==== AJUSTES PARA LA IMAGEN DEL HEADER EN MÓVIL ==== */
+/* ========================================= */
+
+@media (max-width: 768px) {
+  header.hero {
+    /* 1. Cambiamos el punto de anclaje de la imagen.
+       En lugar de centrarla, le decimos que priorice la parte superior. */
+    background-position: center top;
+
+    /* 2. Desactivamos el efecto parallax en móvil.
+       Esto mejora mucho el rendimiento y la compatibilidad. */
+    background-attachment: scroll;
+    
+    /* 3. (Opcional) Podemos darle un poco más de altura en móvil
+       para que la imagen tenga más espacio para mostrarse. */
+    min-height: 60vh;
+  }
+}
+
+/* ========================================= */
+/* ==== ESTILOS PARA EL MENÚ (VERSIÓN DINÁMICA) ==== */
+/* ========================================= */
+
+/* Contenedor principal del menú */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 15px 30px;
+  display: flex;
+  /* MODIFICADO: Alineado a la izquierda */
+  justify-content: flex-start; 
+  align-items: center;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+/* Estado del menú AL HACER SCROLL */
+.sticky-nav.scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 35px; /* Un poco menos de espacio entre elementos */
+}
+
+/* Estilo de los enlaces del menú */
+.sticky-nav a {
+  color: #fff; 
+  text-decoration: none;
+  font-weight: 600;
+  /* MODIFICADO: Tamaño de letra reducido */
+  font-size: 14px; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+}
+
+/* Estilo de los enlaces AL HACER SCROLL */
+.sticky-nav.scrolled a {
+  color: #333;
+  text-shadow: none;
+}
+
+/* Estilo para el enlace de la sección activa */
+.sticky-nav a.active {
+  text-decoration: underline;
+  text-underline-offset: 6px; /* Espacio entre texto y subrayado */
+  text-decoration-thickness: 2px;
+}
+
+/* También para cuando el menú tiene fondo blanco */
+.sticky-nav.scrolled a.active {
+    color: #000; /* Un negro más intenso para destacar */
+}
+
+/* ---- Responsive para móviles ---- */
+@media (max-width: 768px) {
+  .sticky-nav {
+    padding: 12px 20px;
+  }
+  .sticky-nav ul {
+    gap: 20px;
+  }
+  .sticky-nav a {
+    /* MODIFICADO: Tamaño de letra reducido también en móvil */
+    font-size: 13px; 
+  }
+}
+
+/* Restaura la font original per al botó del banner */
+.hero-content .btn {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  text-transform: uppercase; /* Opcional: el posem en majúscules per a més claredat */
+  letter-spacing: 1px;
+}
+
+/* ========================================= */
+/* ==== ESTILS PER A LA SECCIÓ DE TEXT ==== */
+/* ========================================= */
+
+/* Contenidor principal de la secció */
+.text-section {
+  background: #fff; /* Fons blanc */
+  padding: 20px 24px; /* Espai vertical i horitzontal */
+}
+
+/* Limita l'amplada del text per a una millor lectura */
+.text-container {
+  max-width: 100ch; /* 'ch' és una unitat ideal per a la llargada de línia de text */
+  margin: 0 auto; /* Centra el contenidor de text */
+  text-align: center; /* Centra tot el text */
+}
+
+/* Estil per als paràgrafs */
+.text-container p,
+.gift-content p {
+  margin: 0 0 16px;
+  font-size: clamp(14px, 2.4vw, 16px);
+  line-height: 1.8; /* Una mica més d'interlineat per a més claredat */
+  color: #000000;
+}
+
+/* ======================================================= */
+/* ==== AJUST FINAL V2: CENTRAT I ALÇADES IGUALS (GRID) ==== */
+/* ======================================================= */
+
+/* 1. Contenidor principal de les dues columnes */
+.info-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: stretch; /* Força que les columnes tinguin la mateixa alçada */
+  padding: 48px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid #e5e5e5; /* Una línia fina de color gris clar */
+}
+
+/* 2. Columna de la imatge i el seu contingut (ara també és un grid) */
+.info-split__media {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Fila automàtica per al títol, la resta per a la imatge */
+  gap: 16px;
+  text-align: center;
+}
+
+.info-split__media img {
+  width: 100%;
+  height: 100%; /* La imatge ocupa tota l'alçada de la seva fila */
+  object-fit: cover; /* Omple l'espai sense deformar-se */
+  border-radius: 16px;
+}
+
+/* 3. Columna del mapa i el seu contingut (també un grid) */
+.info-split__content {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Fila automàtica per al títol, la resta per al mapa */
+  gap: 16px;
+  text-align: center;
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%; /* El contenidor del mapa ocupa tota l'alçada de la seva fila */
+  border-radius: 16px;
+  overflow: hidden; /* Important per mantenir les cantonades arrodonides de l'iframe */
+}
+
+/* L'iframe ha d'omplir el seu contenidor */
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/* 4. Títols (H2) de cada columna */
+.info-split h2 {
+  font-size: clamp(22px, 3vw, 28px);
+  /* Eliminem el marge inferior perquè ara fem servir 'gap' */
+  margin: 0; 
+  font-weight: 600;
+  color: #333;
+}
+
+/* No t'oblidis de la regla per a mòbils! */
+@media (max-width: 900px) {
+  .info-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+  .info-split h2 {
+    text-align: center;
+  }
+  .info-split__media {
+    text-align: center;
+  }
+  /* Donem una alçada fixa al mapa en vista mòbil per evitar que quedi gegant */
+  .map-container {
+    height: 400px; 
+  }
+}
+
+/* ======================================================= */
+/* ==== ESTILS PER AL COMPTE ENRERE (VERSIÓ CORREGIDA) ==== */
+/* ======================================================= */
+.countdown-section {
+  padding: 80px 24px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.countdown-section h2 {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 48px;
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+/* 3. Canvi per al centrat perfecte */
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3. Nou contenidor per aïllar el cercle i el número */
+.countdown-circle-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.countdown-svg {
+  width: 120px;
+  height: 120px;
+}
+
+.countdown-svg circle {
+  fill: transparent;
+  /* 1. Línia més fina */
+  stroke-width: 4; 
+}
+
+.countdown-svg circle.bg {
+  stroke: #e6e6e6;
+}
+
+.countdown-svg circle.progress {
+  stroke: #009688;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.2s linear;
+  /* 2. Canvi per a la direcció horària */
+  transform-origin: center;
+  transform: rotate(-90deg) scaleY(-1); 
+}
+
+/* 3. El número ara va dins del nou contenidor */
+.countdown-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #a0a0a0;
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.countdown-label {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #555;
+  text-transform: uppercase;
+}
+
+/* ========================================= */
+/* ==== ESTILOS PARA LA SECCIÓN DE REGALO ==== */
+/* ========================================= */
+
+.gift-section {
+  background-color: #f8f8f8; /* Un color suave para diferenciar la sección */
+  padding: 80px 24px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+.gift-content {
+  max-width: 70ch; /* Limitamos el ancho para mejorar la legibilidad */
+  margin: 0 auto;
+}
+
+.gift-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 24px;
+  fill: #009688; /* Color verde azulado a juego con el contador */
+}
+
+.gift-content h2 {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 16px;
+}
+
+.iban-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: monospace; /* Fuente ideal para números de cuenta */
+  font-size: 18px;
+}
+
+#iban-number {
+  color: #333;
+}
+
+#copy-button {
+  display: grid;
+  place-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+#copy-button:hover {
+  background-color: #f0f0f0;
+}
+
+#copy-button svg {
+  width: 18px;
+  height: 18px;
+  fill: #555;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+  .iban-container {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}
+
+.iban-holder {
+  font-family: system-ui, -apple-system, sans-serif; /* Usa la fuente normal de la web */
+  font-size: 14px;
+  color: #666; /* Un gris suave para diferenciarlo */
+  margin-top: 8px; /* Un pequeño espacio para separarlo de la caja del IBAN */
+}
+
+/* ==== ESTILOS PARA EL POP-UP DE "COPIAT!" ==== */
+
+.iban-container {
+  position: relative; /* Necesario para posicionar el pop-up */
+}
+
+.copy-popup {
+  position: absolute;
+  bottom: 125%; /* Lo coloca justo encima del botón */
+  left: 50%;
+  transform: translateX(-50%); /* Lo centra horizontalmente */
+  background-color: #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  white-space: nowrap; /* Evita que el texto se parta en dos líneas */
+  
+  /* Efecto y estado por defecto (oculto) */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Clase que se añade con JavaScript para mostrar el pop-up */
+.copy-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
