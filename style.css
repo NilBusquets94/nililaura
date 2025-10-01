@@ -639,3 +639,103 @@ header.hero::before {
   opacity: 1;
   visibility: visible;
 }
+
+/* ========================================= */
+/* ==== ESTILOS PARA EL MENÚ HAMBURGUESA ==== */
+/* ========================================= */
+
+/* El botón de hamburguesa estará oculto en escritorio */
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hacemos visible el botón en móviles */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2000; /* Asegura que esté por encima de todo */
+
+    /* Posición fija en la esquina superior derecha */
+    position: fixed;
+    top: 15px;
+    right: 20px;
+  }
+
+  .hamburger .line {
+    width: 2rem;
+    height: 0.25rem;
+    background: #fff;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+  }
+  
+  /* Estilo del botón cuando la barra de navegación tiene fondo */
+  .sticky-nav.scrolled + .hamburger .line {
+    background: #333;
+  }
+  
+  /* --- Animación del icono a una 'X' --- */
+  .hamburger[aria-expanded="true"] .line:nth-child(1) {
+    transform: rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+  .hamburger[aria-expanded="true"] .line {
+      background: #333; /* La 'X' siempre será oscura para contrastar */
+  }
+
+
+  /* --- Estilo del panel de navegación desplegable --- */
+  .nav-links {
+    /* Oculta los enlaces de la barra principal en móvil */
+    position: fixed;
+    z-index: 1999;
+    inset: 0 0 0 30%; /* Ocupa el 70% derecho de la pantalla */
+    
+    /* Cambiamos a layout vertical */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: min(20vh, 10rem) 2em;
+
+    /* Fondo semi-transparente que combina con la web */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    
+    /* Animación para deslizar desde la derecha */
+    transform: translateX(100%);
+    transition: transform 350ms ease-out;
+  }
+
+  .nav-links[data-visible="true"] {
+    transform: translateX(0%);
+  }
+
+  /* Estilo de los enlaces dentro del menú desplegable */
+  .nav-links a {
+    color: #333; /* Texto oscuro para que sea legible */
+    text-shadow: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .nav-links a.active {
+    color: #000;
+  }
+}

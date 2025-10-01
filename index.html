@@ -13,7 +13,13 @@
 </head>
 <body>
     <nav class="sticky-nav">
-        <ul>
+        <button id="hamburger-btn" class="hamburger" aria-controls="primary-navigation" aria-expanded="false">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </button>
+
+        <ul id="primary-navigation" class="nav-links" data-visible="false">
             <li><a href="#top">Confirma Assistencia</a></li>
             <li><a href="#location">Horaris i Ubicació</a></li>
             <li><a href="#gift">Regal</a></li>
@@ -83,25 +89,6 @@
             
         </div>
     </section>
-
-    <script>
-    document.getElementById('copy-button').addEventListener('click', function() {
-        const ibanText = document.getElementById('iban-number').innerText;
-        const popup = document.getElementById('copy-popup');
-
-        navigator.clipboard.writeText(ibanText).then(() => {
-            // Muestra el pop-up añadiendo la clase 'show'
-            popup.classList.add('show');
-
-            // Oculta el pop-up después de 1.5 segundos
-            setTimeout(() => {
-                popup.classList.remove('show');
-            }, 1500);
-        }).catch(err => {
-            console.error('Error al copiar el IBAN: ', err);
-        });
-    });
-    </script>
     <section class="countdown-section">
         <h2>Compte enrere</h2>
         <div class="countdown-container">
@@ -274,6 +261,49 @@
 
         // Ejecutar una vez al cargar la página por si no empieza arriba del todo
         handleActiveLink();
+    
+    document.getElementById('copy-button').addEventListener('click', function() {
+        const ibanText = document.getElementById('iban-number').innerText;
+        const popup = document.getElementById('copy-popup');
+
+        navigator.clipboard.writeText(ibanText).then(() => {
+            // Muestra el pop-up añadiendo la clase 'show'
+            popup.classList.add('show');
+
+            // Oculta el pop-up después de 1.5 segundos
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 1500);
+        }).catch(err => {
+            console.error('Error al copiar el IBAN: ', err);
+        });
+    });
+    
+    // ===== CÓDIGO NUEVO PARA EL MENÚ MÓVIL =====
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinksv2 = document.getElementById('primary-navigation');
+
+    hamburgerBtn.addEventListener('click', () => {
+        const isVisible = navLinksv2.getAttribute('data-visible') === 'true';
+
+        if (isVisible) {
+            // Si está visible, lo ocultamos
+            navLinksv2.setAttribute('data-visible', 'false');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        } else {
+            // Si está oculto, lo mostramos
+            navLinksv2.setAttribute('data-visible', 'true');
+            hamburgerBtn.setAttribute('aria-expanded', 'true');
+        }
+    });
+
+    // Opcional: Cierra el menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinksv2.setAttribute('data-visible', 'false');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
     </script>
 </body>
 </html>
