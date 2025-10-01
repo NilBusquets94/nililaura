@@ -660,6 +660,17 @@ header.hero::before {
   .sticky-nav.scrolled .hamburger .line {
     background: #333;
   }
+
+  .sticky-nav {
+    /* Aumentamos el padding para hacer la barra más alta */
+    padding: 24px 20px;
+  }
+  .sticky-nav ul {
+    gap: 20px;
+  }
+  .sticky-nav a {
+    font-size: 13px; 
+  }
   
   .hamburger[aria-expanded="true"] .line:nth-child(1) {
     transform: rotate(45deg);
@@ -707,23 +718,34 @@ header.hero::before {
   }
 }
 
-/* AJUSTES RESPONSIVE PARA EL CONTADOR */
+/* AJUSTES RESPONSIVE PARA EL CONTADOR (CORREGIDO) */
 @media (max-width: 500px) {
   .countdown-container {
     gap: 16px; /* Reducimos el espacio entre círculos */
+    /* Evita que los círculos se desborden en pantallas muy pequeñas */
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
-  .countdown-circle-container,
-  .countdown-svg {
+  /* La clave es usar .countdown-item para aplicar los cambios a cada uno */
+  .countdown-item .countdown-circle-container,
+  .countdown-item .countdown-svg {
     width: 80px; /* Reducimos el tamaño de los círculos */
     height: 80px;
   }
+  
+  /* Aseguramos que los círculos SVG internos se ajusten */
+  .countdown-item .countdown-svg circle {
+    r: 35;      /* Radio más pequeño */
+    cx: 40;     /* Nuevo centro X */
+    cy: 40;     /* Nuevo centro Y */
+  }
 
-  .countdown-number {
+  .countdown-item .countdown-number {
     font-size: 24px; /* Hacemos el número más pequeño */
   }
 
-  .countdown-label {
+  .countdown-item .countdown-label {
     font-size: 12px; /* Y la etiqueta también */
   }
 }
