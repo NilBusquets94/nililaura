@@ -401,7 +401,7 @@ header.hero::before {
 @media (max-width: 900px) {
   .info-split {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 60px;
     padding: 40px 20px;
   }
   .info-split h2 {
@@ -436,7 +436,6 @@ header.hero::before {
   display: flex;
   justify-content: center;
   gap: 32px;
-  flex-wrap: wrap;
 }
 
 /* 3. Canvi per al centrat perfecte */
@@ -657,7 +656,8 @@ header.hero::before {
     transform-origin: 1px;
   }
   
-  .sticky-nav.scrolled + .hamburger .line {
+  /* Estilo del botón cuando la barra de navegación tiene fondo */
+  .sticky-nav.scrolled .hamburger .line {
     background: #333;
   }
   
@@ -704,5 +704,26 @@ header.hero::before {
 
   .nav-links a.active {
     color: #000;
+  }
+}
+
+/* AJUSTES RESPONSIVE PARA EL CONTADOR */
+@media (max-width: 500px) {
+  .countdown-container {
+    gap: 16px; /* Reducimos el espacio entre círculos */
+  }
+
+  .countdown-circle-container,
+  .countdown-svg {
+    width: 80px; /* Reducimos el tamaño de los círculos */
+    height: 80px;
+  }
+
+  .countdown-number {
+    font-size: 24px; /* Hacemos el número más pequeño */
+  }
+
+  .countdown-label {
+    font-size: 12px; /* Y la etiqueta también */
   }
 }
