@@ -61,15 +61,17 @@
         <div class="info-split__content">
             <h2>Ubicació</h2>
             <div class="map-container">
-                <iframe
-                    src="https://maps.google.com/maps?q=41.862811,2.352810&hl=es;z=15&output=embed"
-                    width="600"
-                    height="450"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.57399828556!2d2.350242315445672!3d41.8628059792233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a51a1e0b1f1a6b%3A0x8c7e9af2e6d0b2e8!2sMas%20d'Osor!5e0!3m2!1ses!2ses!4v1664530000000"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
+                
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Mas+d'Osor" target="_blank" class="directions-btn" rel="noopener noreferrer">
+                    <span class="directions-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 110.7V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v112c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16h112c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>
+                    </span>
+                    <span class="directions-text">Com arribar</span>
+                </a>
             </div>
         </div>
     </section>
@@ -77,7 +79,7 @@
         <div class="gift-content">
             <img src="regalo.png" alt="Icono de regalo" class="gift-icon">
             <h2>Un detall per a nosaltres</h2>
-            <p>El vostre regal més gran és la vostra companyia...</p>
+            <p>El vostre regal més gran és ser-hi amb nosaltres. Però si voleu col·laborar en el nostre futur, aquí teniu el número de compte, que ens ajudarà a fer realitat nous somnis.</p>
             
             <div class="iban-container">
                 <span id="iban-number">ES00 0000 0000 0000 0000 0000</span>
@@ -136,31 +138,6 @@
             </div>
         </div>
     </section>
-    <section class="contact-section" id="contact">
-        <div class="contact-content">
-            <h2>Contacta amb nosaltres</h2>
-            <p>Contacta per resoldre dubtes sobre el casament.</p>
-        </div>
-
-        <form class="contact-form" name="contacto" method="POST" data-netlify="true" action="/gracias.html">
-            <div class="form-group">
-                <label for="name">Nom <span class="required">(required)</span></label>
-                <input type="text" id="name" name="name">
-            </div>
-            <div class="form-group">
-                <label for="email">Email <span class="required">(required)</span></label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Missatge <span class="required">(required)</span></label>
-                <textarea id="message" name="message" rows="4"></textarea>
-            </div>
-            <div class="form-group form-submit">
-                <button type="submit" class="submit-btn">Enviar</button>
-            </div>
-        </form>
-    </section>
-
     <script>
 
         // Estableix la data i hora del casament

@@ -132,104 +132,6 @@ header.hero::before {
 }
 
 /* ========================================= */
-/* ==== ESTILOS PARA LA SECCIÓN DE CONTACTO ==== */
-/* ========================================= */
-
-.contact-section {
-  background: #fff;
-  padding: 80px 24px;
-  text-align: center;
-}
-
-.contact-content h2 {
-  font-size: clamp(36px, 5vw, 50px);
-  font-weight: 400; /* Letra más fina */
-  letter-spacing: 0.5px;
-  line-height: 1.3;
-  margin: 0 0 16px;
-}
-
-.contact-content p {
-  max-width: 45ch;
-  margin: 0 auto 48px auto;
-  opacity: 0.8;
-  font-size: clamp(16px, 2.4vw, 18px);
-}
-
-/* Contenedor del formulario */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: left; /* Alineamos las etiquetas a la izquierda */
-}
-
-.form-group {
-  margin-bottom: 24px;
-}
-
-/* Estilo para las etiquetas (Name, Email, Message) */
-.contact-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
-
-.contact-form .required {
-  font-weight: 400;
-  font-size: 12px;
-  color: #888;
-}
-
-/* Estilo para los campos de texto y el área de mensaje */
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 16px;
-  transition: border-color .2s ease;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #000; /* Resalta el borde al hacer clic */
-}
-
-.contact-form textarea {
-  resize: vertical; /* Permite al usuario ajustar la altura */
-}
-
-/* Estilo del botón "Enviar" */
-.submit-btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 12px 32px;
-  border-radius: 50px; /* Para que sea totalmente redondeado */
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: opacity .2s ease;
-}
-
-.submit-btn:hover {
-  opacity: 0.8;
-}
-
-/* Centrar el botón */
-.form-submit {
-  text-align: center;
-  margin-top: 32px;
-}
-
-/* ========================================= */
 /* ==== ESTILOS PARA EL MENÚ (VERSIÓN DINÁMICA) ==== */
 /* ========================================= */
 
@@ -748,4 +650,53 @@ header.hero::before {
   .countdown-item .countdown-label {
     font-size: 12px; /* Y la etiqueta también */
   }
+}
+
+/* ==================================================== */
+/* ==== ESTILOS PARA EL BOTÓN PERSONALIZADO DEL MAPA ==== */
+/* ==================================================== */
+
+.directions-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: transform 0.2s ease;
+}
+
+.directions-btn:hover {
+  transform: scale(1.05);
+}
+
+.directions-icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #008386; /* Un color similar al de tu imagen */
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.directions-icon svg {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+.directions-text {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
 }
