@@ -667,6 +667,7 @@ header.hero::before {
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 10px;
+  width: 150px; /* Define un ancho fijo para el recuadro. Ajústalo a tu gusto. */
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   backdrop-filter: blur(5px);
@@ -688,10 +689,9 @@ header.hero::before {
   margin-bottom: 8px;
 }
 
-.directions-icon svg {
-  width: 24px;
-  height: 24px;
-  color: #fff;
+.directions-icon img {
+  width: 24px;  /* Ajusta el tamaño de tu logo si es necesario */
+  height: 24px; /* Asegúrate de que width y height sean iguales */
 }
 
 .directions-text {
