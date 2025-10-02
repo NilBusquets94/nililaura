@@ -282,31 +282,38 @@
         });
     });
 
-    // ===== CÓDIGO PARA EL POP-UP DE LA IMAGEN DE HORARIOS =====
-    const modal = document.getElementById("image-modal");
-    const triggerImage = document.getElementById("horaris-image");
-    const modalImage = document.getElementById("modal-image");
-    const closeBtn = document.querySelector(".modal-close-btn");
-    const bodyElForModal = document.body;
+    // ===== CÓDIGO CORREGIDO PARA EL POP-UP DE LA IMAGEN DE HORARIOS =====
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtener los elementos del DOM
+        const modal = document.getElementById("image-modal");
+        const triggerImage = document.getElementById("horaris-image");
+        const modalImage = document.getElementById("modal-image");
+        const closeBtn = document.querySelector(".modal-close-btn");
+        const bodyElForModal = document.body;
 
-    // Abre el modal al hacer clic en la imagen de horarios
-    triggerImage.onclick = function() {
-    modal.style.display = "block";
-    modalImage.src = this.src;
-    bodyElForModal.classList.add("no-scroll");
-    }
+        // Verificamos que la imagen y el modal existen antes de continuar
+        if (triggerImage && modal) {
+            
+            // Abre el modal al hacer clic en la imagen de horarios
+            triggerImage.onclick = function() {
+            modal.style.display = "block";
+            modalImage.src = this.src;
+            bodyElForModal.classList.add("no-scroll");
+            }
 
-    // Cierra el modal con el botón 'X'
-    closeBtn.onclick = function() {
-    modal.style.display = "none";
-    bodyElForModal.classList.remove("no-scroll");
-    }
-
-    // Cierra el modal al hacer clic en el fondo gris
-    window.addEventListener('click', function(event) {
-        if (event.target == modal) {
+            // Cierra el modal con el botón 'X'
+            closeBtn.onclick = function() {
             modal.style.display = "none";
             bodyElForModal.classList.remove("no-scroll");
+            }
+
+            // Cierra el modal al hacer clic en el fondo gris
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    bodyElForModal.classList.remove("no-scroll");
+                }
+            });
         }
     });
     </script>
