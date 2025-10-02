@@ -258,9 +258,10 @@
         });
     });
     
-    // ===== CÓDIGO NUEVO PARA EL MENÚ MÓVIL =====
+    // ===== CÓDIGO NUEVO PARA EL MENÚ MÓVIL (CON BLOQUEO DE SCROLL) =====
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navLinksv2 = document.getElementById('primary-navigation');
+    const bodyEl = document.body;
 
     hamburgerBtn.addEventListener('click', () => {
         const isVisible = navLinksv2.getAttribute('data-visible') === 'true';
@@ -269,18 +270,21 @@
             // Si está visible, lo ocultamos
             navLinksv2.setAttribute('data-visible', 'false');
             hamburgerBtn.setAttribute('aria-expanded', 'false');
+            bodyEl.classList.remove('no-scroll'); // Desbloquea el scroll
         } else {
             // Si está oculto, lo mostramos
             navLinksv2.setAttribute('data-visible', 'true');
             hamburgerBtn.setAttribute('aria-expanded', 'true');
+            bodyEl.classList.add('no-scroll'); // Bloquea el scroll
         }
     });
 
-    // Opcional: Cierra el menú al hacer clic en un enlace
+    // Cierra el menú y desbloquea el scroll al hacer clic en un enlace
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinksv2.setAttribute('data-visible', 'false');
             hamburgerBtn.setAttribute('aria-expanded', 'false');
+            bodyEl.classList.remove('no-scroll');
         });
     });
     </script>
