@@ -220,7 +220,7 @@ header.hero::before {
 .text-container {
   max-width: 100ch; /* 'ch' és una unitat ideal per a la llargada de línia de text */
   margin: 0 auto; /* Centra el contenidor de text */
-  text-align: center; /* Centra tot el text */
+  text-align: justify; /* MODIFICADO: Centra tot el text */
 }
 
 /* Estil per als paràgrafs */
@@ -239,8 +239,8 @@ header.hero::before {
 /* 1. Contenidor principal de les dues columnes */
 .info-split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: 1fr; /* MODIFICADO: Apilado en una sola columna */
+  gap: 60px; /* MODIFICADO: Más espacio entre secciones apiladas */
   align-items: stretch; /* Força que les columnes tinguin la mateixa alçada */
   padding: 48px 24px;
   max-width: 1400px;
@@ -251,7 +251,7 @@ header.hero::before {
 /* 2. Columna de la imatge i el seu contingut (ara també és un grid) */
 .info-split__media {
   display: grid;
-  grid-template-rows: auto 1fr; /* Fila automàtica per al títol, la resta per a la imatge */
+  grid-template-rows: auto auto 1fr; /* MODIFICADO: Fila para el título, para el párrafo y el resto para la imagen */
   gap: 16px;
   text-align: center;
 }
@@ -266,7 +266,7 @@ header.hero::before {
 /* 3. Columna del mapa i el seu contingut (també un grid) */
 .info-split__content {
   display: grid;
-  grid-template-rows: auto 1fr; /* Fila automàtica per al títol, la resta per al mapa */
+  grid-template-rows: auto auto 1fr; /* MODIFICADO: Fila para el título, para el párrafo y el resto para el mapa */
   gap: 16px;
   text-align: center;
 }
@@ -299,10 +299,21 @@ header.hero::before {
   color: #333;
 }
 
+/* NUEVO: Estilo para los nuevos párrafos en Horaris y Ubicació */
+.info-split p {
+  font-size: clamp(14px, 2.2vw, 16px);
+  line-height: 1.7;
+  color: #333;
+  max-width: 70ch;
+  margin: 0 auto; /* Centra el bloque de texto */
+  padding: 0 10px; /* Pequeño padding lateral */
+}
+
+
 /* No t'oblidis de la regla per a mòbils! */
 @media (max-width: 900px) {
   .info-split {
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; no es necesario, ya está fuera */
     gap: 60px;
     padding: 40px 20px;
   }
