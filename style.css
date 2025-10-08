@@ -470,13 +470,6 @@ header.hero::before {
   background-color: #f0f0f0;
 }
 
-#copy-button svg {
-  width: 18px;
-  height: 18px;
-  fill: #555;
-}
-
-
 
 .iban-holder {
   font-family: system-ui, -apple-system, sans-serif; /* Usa la fuente normal de la web */
@@ -862,4 +855,17 @@ body.no-scroll {
 
 #address-text {
   font-family: system-ui, -apple-system, sans-serif;
+}
+
+.copy-text {
+  flex-grow: 1;
+  text-align: center;
+  margin: 0 10px; /* Añade un pequeño margen para que no se pegue al botón */
+}
+
+/* Estilo para la nueva imagen dentro de los botones de copiar */
+.copy-container button img {
+  width: 20px;   /* Ajusta el tamaño si es necesario */
+  height: 20px;  /* Ajusta el tamaño si es necesario */
+  display: block; /* Ayuda a evitar espacios indeseados */
 }
