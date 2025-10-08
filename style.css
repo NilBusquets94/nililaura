@@ -120,17 +120,6 @@ header.hero::before {
   height: 100%;
 }
 
-/* Estilo para el enlace de la dirección */
-.address-link {
-  text-decoration: none; /* Quita el subrayado por defecto */
-  color: inherit; /* Hereda el color del texto normal */
-  transition: color .2s ease;
-}
-
-.address-link:hover {
-  color: #007bff; /* Cambia a un color azul al pasar el ratón */
-}
-
 /* ========================================= */
 /* ==== ESTILOS PARA EL MENÚ (VERSIÓN DINÁMICA) ==== */
 /* ========================================= */
@@ -455,15 +444,24 @@ header.hero::before {
   color: #333;
 }
 
+/* En la sección de Regalo, o donde tengas el botón de IBAN */
 #copy-button {
-  display: grid;
-  place-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px; /* Ajusta para que coincida */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; /* Para que ambos iconos tengan el mismo tamaño visible */
+    height: 24px;
+}
+
+#copy-button img {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 #copy-button:hover {
@@ -533,19 +531,6 @@ header.hero::before {
   font-size: clamp(14px, 2.4vw, 16px);
   line-height: 1.8;
   color: #555;
-}
-
-.thank-you-content .sign-off {
-  font-style: italic;
-  margin-top: 32px;
-  margin-bottom: 8px;
-}
-
-.thank-you-content .names {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(32px, 5vw, 48px);
-  color: #000;
-  margin: 0;
 }
 
 /* ========================================= */
@@ -868,4 +853,25 @@ body.no-scroll {
   width: 20px;   /* Ajusta el tamaño si es necesario */
   height: 20px;  /* Ajusta el tamaño si es necesario */
   display: block; /* Ayuda a evitar espacios indeseados */
+}
+
+/* Estilo para el botón de copiar dirección */
+#copy-address-btn {
+    background: none; /* Elimina el fondo */
+    border: none;    /* Elimina el borde */
+    cursor: pointer; /* Asegura que el cursor sea un puntero */
+    padding: 0;      /* Elimina cualquier padding interno por defecto del botón */
+    margin-left: 8px; /* Ajusta el margen si lo necesitas */
+    display: inline-flex; /* Para alinear verticalmente la imagen si tiene altura diferente */
+    align-items: center; /* Centra verticalmente la imagen */
+    justify-content: center;
+    width: 24px; /* Ajusta el tamaño para que sea similar al del IBAN si es necesario */
+    height: 24px;
+}
+
+/* Asegúrate de que la imagen dentro del botón también se vea bien */
+#copy-address-btn img {
+    width: 100%; /* La imagen ocupa todo el espacio del botón */
+    height: 100%;
+    display: block;
 }
