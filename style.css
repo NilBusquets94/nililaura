@@ -875,3 +875,92 @@ body.no-scroll {
     height: 100%;
     display: block;
 }
+
+/* ======================================================= */
+/* ==== ESTILOS PARA LA SECCIÓN DE ALOJAMIENTOS ==== */
+/* ======================================================= */
+
+.accommodations-section {
+  background-color: #fff; /* O el color de fondo que prefieras, #f8f8f8 también queda bien */
+  padding: 80px 24px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+.accommodations-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.accommodations-content h2 {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 16px;
+}
+
+.accommodations-content p {
+  max-width: 70ch;
+  margin: 0 auto 48px auto; /* Centra el párrafo y añade espacio debajo */
+  font-size: clamp(14px, 2.4vw, 16px);
+  line-height: 1.8;
+  color: #555;
+}
+
+.hotel-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Diseño responsive */
+  gap: 32px; /* Espacio entre las tarjetas */
+  text-align: left; /* Alinea el texto de las tarjetas a la izquierda */
+}
+
+.hotel-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.hotel-card h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  color: #333;
+}
+
+.hotel-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 12px;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.hotel-info .icon {
+  font-size: 18px;
+  margin-top: -2px; /* Ajuste visual para alinear los iconos */
+}
+
+.hotel-info a {
+  color: #008386; /* Un color similar al de tu web */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hotel-info a:hover {
+  text-decoration: underline;
+}
+
+/* Ajuste para la sección de Ubicació separada */
+.section-no-border {
+  border-top: none;
+  padding-top: 0;
+}
