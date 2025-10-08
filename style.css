@@ -209,14 +209,14 @@ header.hero::before {
 .text-container {
   max-width: 100ch; /* 'ch' és una unitat ideal per a la llargada de línia de text */
   margin: 0 auto; /* Centra el contenidor de text */
-  text-align: justify; /* MODIFICADO: Centra tot el text */
+  text-align: center; /* MODIFICADO: Centra tot el text */
 }
 
 /* Estil per als paràgrafs */
 .text-container p,
 .gift-content p {
   margin: 0 0 16px;
-  font-size: clamp(14px, 2.4vw, 16px);
+  font-size: clamp(14px, 2.4vw, 20px);
   line-height: 1.8; /* Una mica més d'interlineat per a més claredat */
   color: #000000;
 }
