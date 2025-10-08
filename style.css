@@ -239,19 +239,19 @@ header.hero::before {
 /* 1. Contenidor principal de les dues columnes */
 .info-split {
   display: grid;
-  grid-template-columns: 1fr; /* MODIFICADO: Apilado en una sola columna */
-  gap: 60px; /* MODIFICADO: Más espacio entre secciones apiladas */
-  align-items: stretch; /* Força que les columnes tinguin la mateixa alçada */
+  grid-template-columns: 1fr;
+  gap: 60px;
+  align-items: start; /* CORREGIDO: Evita que las secciones se estiren y se solapen */
   padding: 48px 24px;
   max-width: 1400px;
   margin: 0 auto;
-  border-top: 1px solid #e5e5e5; /* Una línia fina de color gris clar */
+  border-top: 1px solid #e5e5e5;
 }
 
 /* 2. Columna de la imatge i el seu contingut (ara també és un grid) */
 .info-split__media {
   display: grid;
-  grid-template-rows: auto auto 1fr; /* MODIFICADO: Fila para el título, para el párrafo y el resto para la imagen */
+  grid-template-rows: auto auto 1fr; /* Fila para el título, para el párrafo y el resto para la imagen */
   gap: 16px;
   text-align: center;
 }
@@ -266,7 +266,7 @@ header.hero::before {
 /* 3. Columna del mapa i el seu contingut (també un grid) */
 .info-split__content {
   display: grid;
-  grid-template-rows: auto auto 1fr; /* MODIFICADO: Fila para el título, para el párrafo y el resto para el mapa */
+  grid-template-rows: auto auto 1fr; /* Fila para el título, para el párrafo y el resto para el mapa */
   gap: 16px;
   text-align: center;
 }
