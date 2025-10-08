@@ -972,3 +972,51 @@ body.no-scroll {
   border-top: none;
   padding-top: 0;
 }
+
+/* ======================================================= */
+/* ESTILOS PARA LA SECCIÓN Y BOTÓN DEL CALENDARIO (V3) */
+/* ======================================================= */
+
+/* 1. Estilo para la nueva sección contenedora */
+.calendar-section {
+  text-align: center; /* Centra el botón horizontalmente */
+  padding: 40px 20px; /* Añade espacio arriba y abajo */
+  background-color: #fff;
+}
+
+/* 2. Nuevo diseño para el botón adaptado a fondo blanco */
+.btn-calendar {
+  /* --- Estructura y alineación --- */
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  /* --- Nuevo diseño y apariencia --- */
+  padding: 12px 24px;
+  color: #fff; /* Texto blanco */
+  background-color: #009688; /* Color verde azulado a juego con el contador */
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* --- Texto --- */
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  
+  /* --- Animación --- */
+  transition: all 0.3s ease;
+}
+
+.btn-calendar:hover {
+  background-color: #00796b; /* Un tono más oscuro al pasar el ratón */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+}
+
+/* --- Estilo para el icono dentro del botón --- */
+.btn-calendar img {
+  width: 22px;
+  height: 22px;
+}
