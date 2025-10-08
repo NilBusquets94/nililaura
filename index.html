@@ -63,6 +63,13 @@
             <p>Aquí sempre podràs consultar l’adreça, així que… res d’excuses per arribar tard!</p>
             <p>Hi haurà un <b>servei d’autocar</b> de Sabadell fins a Mas d’Osor (anada i tornada). Al formulari ens haureu de confirmar si hi esteu interessats i nosaltres ens posarem en contacte amb vosaltres.</p>
             <p>Si vols quedar-te a dormir a prop, et deixem a continuació els dos allotjaments més propers. Tot i així, hi ha moltes més opcions a internet —i, si tens dubtes, ens pots preguntar!</p>
+            <div class="copy-container">
+                <span id="address-text">Carretera de Viladrau a Fàbrega, Km 0,7, 17406 Viladrau, Girona</span>
+                <button id="copy-address-btn" title="Copiar Adreça">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></svg>
+                </button>
+                <span id="copy-address-popup" class="copy-popup">Adreça copiada!</span>
+            </div>
             <div class="map-container">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.57399828556!2d2.350242315445672!3d41.8628059792233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a51a1e0b1f1a6b%3A0x8c7e9af2e6d0b2e8!2sMas%20d'Osor!5e0!3m2!1ses!2ses!4v1664530000000"
@@ -84,7 +91,7 @@
             <h2>Un detall per a nosaltres</h2>
             <p>El vostre regal més gran és ser-hi amb nosaltres. Però si voleu col·laborar en el nostre futur, aquí teniu el número de compte, que ens ajudarà a fer realitat nous somnis.</p>
             
-            <div class="iban-container">
+            <div class="copy-container">
                 <span id="iban-number">ES00 0000 0000 0000 0000 0000</span>
                 <button id="copy-button" title="Copiar IBAN">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></svg>
@@ -145,9 +152,7 @@
     <section class="thank-you-section">
         <div class="thank-you-content">
             <h2>Gràcies!</h2>
-            <p>La vostra presència i el vostre afecte són el regal més gran de tots. Estem immensament feliços de poder compartir aquest dia amb la gent que més estimem. Gràcies per ser-hi!</p>
-            <p class="sign-off">Amb tot el nostre amor,</p>
-            <p class="names">Laura & Nil</p>
+            <p>Per qualsevol dubte o si necessiteu més informació, ens podeu escriure directament per <b>Whatsapp</b>. Gràcies per ser-hi!</p>
         </div>
     </section>
 
@@ -328,6 +333,24 @@
                 }
             });
         }
+    });
+
+    // ===== CÓDIGO PARA COPIAR LA DIRECCIÓN =====
+    document.getElementById('copy-address-btn').addEventListener('click', function() {
+        const addressText = document.getElementById('address-text').innerText;
+        const popup = document.getElementById('copy-address-popup');
+
+        navigator.clipboard.writeText(addressText).then(() => {
+            // Muestra el pop-up
+            popup.classList.add('show');
+
+            // Oculta el pop-up después de 1.5 segundos
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 1500);
+        }).catch(err => {
+            console.error('Error al copiar la dirección: ', err);
+        });
     });
     </script>
 

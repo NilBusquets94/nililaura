@@ -437,7 +437,9 @@ header.hero::before {
   margin: 0 0 16px;
 }
 
-.iban-container {
+/* Esta es la regla principal para ESCRITORIO */
+.copy-container {
+  position: relative; /* Propiedad del primer bloque, ahora integrada */
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -445,7 +447,7 @@ header.hero::before {
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
-  font-family: monospace; /* Fuente ideal para números de cuenta */
+  font-family: monospace;
   font-size: 18px;
 }
 
@@ -484,10 +486,6 @@ header.hero::before {
 }
 
 /* ==== ESTILOS PARA EL POP-UP DE "COPIAT!" ==== */
-
-.iban-container {
-  position: relative; /* Necesario para posicionar el pop-up */
-}
 
 .copy-popup {
   position: absolute;
@@ -580,7 +578,7 @@ header.hero::before {
   }
 
   /* --- Ajustes de la sección de Regalo --- */
-  .iban-container {
+  .copy-container {
     font-size: 14px;
     padding: 10px 14px;
   }
@@ -834,4 +832,34 @@ header.hero::before {
 /* Clase para bloquear el scroll (si no la tienes ya) */
 body.no-scroll {
   overflow: hidden;
+}
+
+/* ======================================================= */
+/* ==== AJUSTES V2: REDUCIR ANCHO EN ESCRITORIO (APILADO) ==== */
+/* ======================================================= */
+
+/* 1. Mantenemos el cambio del ancho de texto para que sea consistente */
+.info-split p {
+  max-width: 100ch;
+}
+
+/* 2. En pantallas de más de 900px, en lugar de crear dos columnas,
+      simplemente hacemos que el contenido no ocupe todo el ancho. */
+@media (min-width: 901px) {
+  .info-split {
+    /* Centra los elementos hijos que ahora tendrán un ancho máximo */
+    justify-items: center;
+    padding: 80px 24px;
+  }
+
+  /* Le damos un ancho máximo a los contenedores de la imagen y del mapa */
+  .info-split__media,
+  .info-split__content {
+    width: 100%; /* Asegura que usan el espacio disponible */
+    max-width: 800px; /* ¡Esta es la clave! Limita el ancho máximo a 800px. Puedes ajustar este valor si lo quieres más grande o más pequeño. */
+  }
+}
+
+#address-text {
+  font-family: system-ui, -apple-system, sans-serif;
 }
