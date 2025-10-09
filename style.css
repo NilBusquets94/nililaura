@@ -665,8 +665,8 @@ header.hero::before {
   .accommodations-content p,
   .gift-content p,
   .thank-you-content p,
-  .detail-text,
-  .detail-link,
+  .hotel-details .detail-text,   /* <-- MODIFICADO */
+  .hotel-details .detail-link,   /* <-- MODIFICADO */
   .directions-text,
   .iban-holder {
     /* Usamos un clamp() con un mínimo más alto para móvil */
@@ -883,8 +883,8 @@ body.no-scroll {
 
 /* Asegúrate de que la imagen dentro del botón también se vea bien */
 #copy-address-btn img {
-    width: 100%; /* La imagen ocupa todo el espacio del botón */
-    height: 100%;
+    width: 20px;
+    height: auto; /* La altura se ajusta para mantener la proporción */
     display: block;
 }
 
