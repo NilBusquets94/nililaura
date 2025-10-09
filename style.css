@@ -527,7 +527,7 @@ header.hero::before {
   margin: 0 0 16px;
   font-size: clamp(14px, 2.4vw, 20px);
   line-height: 1.8;
-  color: #555;
+  color: #000000;
 }
 
 /* ========================================= */
@@ -716,12 +716,13 @@ header.hero::before {
   left: 8px;
   z-index: 10;
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Alineación horizontal */
   align-items: center;
+  justify-content: center;
+  gap: 10px; /* Espacio entre el icono y el texto */
   text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 10px;
-  width: 150px; /* Define un ancho fijo para el recuadro. Ajústalo a tu gusto. */
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 32px 62px; /* Más ancho que alto */
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   backdrop-filter: blur(5px);
@@ -751,7 +752,7 @@ header.hero::before {
 .directions-text {
   color: #333;
   font-weight: 500;
-  font-size: clamp(14px, 2.4vw, 20px);
+  font-size: clamp(12px, 5.4vw, 25px);
   font-family: system-ui, -apple-system, sans-serif;
 }
 
@@ -834,7 +835,7 @@ body.no-scroll {
 }
 
 #horaris p {
-  color: #000000; /* <-- Cambia este valor por el color que desees */
+  color: #A57C5B; /* <-- Cambia este valor por el color que desees */
 }
 
 /* 2. En pantallas de más de 900px, en lugar de crear dos columnas,
