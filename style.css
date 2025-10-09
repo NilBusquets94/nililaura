@@ -662,11 +662,11 @@ header.hero::before {
   .hero p,
   .text-container p,
   .info-split p,
-  .accommodations-content p,
+  .accommodations-section .accommodations-content p, /* <-- MODIFICADO */
   .gift-content p,
   .thank-you-content p,
-  .hotel-details .detail-text,   /* <-- MODIFICADO */
-  .hotel-details .detail-link,   /* <-- MODIFICADO */
+  .hotel-details .detail-text,
+  .hotel-details .detail-link,
   .directions-text,
   .iban-holder {
     /* Usamos un clamp() con un mínimo más alto para móvil */
