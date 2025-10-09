@@ -73,7 +73,7 @@ header.hero::before {
 
 .hero p {
   margin: 0 0 28px;
-  font-size: clamp(16px, 2.4vw, 22px);
+  font-size: clamp(14px, 2.4vw, 20px);
   font-family: "Charm", cursive;
   opacity: .95;
   font-weight: 400; /* Assegurem que el gruix sigui consistent amb el títol */
@@ -290,7 +290,7 @@ header.hero::before {
 
 /* NUEVO: Estilo para los nuevos párrafos en Horaris y Ubicació */
 .info-split p {
-  font-size: clamp(14px, 2.2vw, 16px);
+  font-size: clamp(14px, 2.4vw, 20px);
   line-height: 1.7;
   color: #333;
   max-width: 70ch;
@@ -391,7 +391,7 @@ header.hero::before {
 
 .countdown-label {
   margin-top: 16px;
-  font-size: 14px;
+  font-size: clamp(14px, 2.4vw, 20px);
   color: #555;
   text-transform: uppercase;
 }
@@ -471,7 +471,7 @@ header.hero::before {
 
 .iban-holder {
   font-family: system-ui, -apple-system, sans-serif; /* Usa la fuente normal de la web */
-  font-size: 14px;
+  font-size: clamp(14px, 2.4vw, 20px);
   color: #666; /* Un gris suave para diferenciarlo */
   margin-top: 8px; /* Un pequeño espacio para separarlo de la caja del IBAN */
 }
@@ -528,7 +528,7 @@ header.hero::before {
 
 .thank-you-content p {
   margin: 0 0 16px;
-  font-size: clamp(14px, 2.4vw, 16px);
+  font-size: clamp(14px, 2.4vw, 20px);
   line-height: 1.8;
   color: #555;
 }
@@ -739,7 +739,7 @@ header.hero::before {
 .directions-text {
   color: #333;
   font-weight: 500;
-  font-size: 14px;
+  font-size: clamp(14px, 2.4vw, 20px);
   font-family: system-ui, -apple-system, sans-serif;
 }
 
@@ -901,7 +901,7 @@ body.no-scroll {
 .accommodations-content p {
   max-width: 70ch;
   margin: 0 auto 48px auto;
-  font-size: clamp(14px, 2.4vw, 16px);
+  font-size: clamp(14px, 2.4vw, 20px);
   line-height: 1.8;
   color: #555;
 }
@@ -951,13 +951,13 @@ body.no-scroll {
 }
 
 .detail-text {
-  font-size: 15px;
+  font-size: clamp(14px, 2.4vw, 20px);
   color: #555;
   line-height: 1.5;
 }
 
 .detail-link {
-  font-size: 15px;
+  font-size: clamp(14px, 2.4vw, 20px);
   color: #008386;
   text-decoration: none;
   font-weight: 500;
@@ -979,9 +979,12 @@ body.no-scroll {
 
 /* 1. Estilo para la nueva sección contenedora */
 .calendar-section {
-  text-align: center; /* Centra el botón horizontalmente */
-  padding: 40px 20px; /* Añade espacio arriba y abajo */
+  text-align: center;
+  padding: 12px 24px 36px;
+  margin-top: -48px;
   background-color: #fff;
+  position: relative;
+  z-index: 2;
 }
 
 /* 2. Nuevo diseño para el botón adaptado a fondo blanco */
@@ -994,7 +997,7 @@ body.no-scroll {
   /* --- Nuevo diseño y apariencia --- */
   padding: 12px 24px;
   color: #fff; /* Texto blanco */
-  background-color: #009688; /* Color verde azulado a juego con el contador */
+  background-color: #c7c4bf; /* Color verde azulado a juego con el contador */
   border: none;
   border-radius: 8px;
   text-decoration: none;
