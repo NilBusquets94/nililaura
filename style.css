@@ -57,14 +57,12 @@ header.hero::before {
   z-index: 2;
   padding: 0 20px;
   max-width: 1000px;
-  font-family: 'Cinzel', serif;
 }
 
 .hero h1 {
   margin: 0 0 12px;
   font-size: clamp(40px, 8vw, 80px);
   line-height: 1.05;
-  font-family: "Charm", cursive;
   font-weight: 400;              
   text-transform: none;
   letter-spacing: 1px;           
@@ -74,9 +72,8 @@ header.hero::before {
 .hero p {
   margin: 0 0 28px;
   font-size: clamp(14px, 2.4vw, 20px);
-  font-family: "Charm", cursive;
   opacity: .95;
-  font-weight: 400; /* Assegurem que el gruix sigui consistent amb el títol */
+  font-weight: 400;
   letter-spacing: 1.5px;
 }
 
@@ -660,6 +657,21 @@ header.hero::before {
   .nav-links a.active {
     color: #000;
   }
+
+  /* --- Aumento de tamaño para textos en móvil --- */
+  .hero p,
+  .text-container p,
+  .info-split p,
+  .accommodations-content p,
+  .gift-content p,
+  .thank-you-content p,
+  .detail-text,
+  .detail-link,
+  .directions-text,
+  .iban-holder {
+    /* Usamos un clamp() con un mínimo más alto para móvil */
+    font-size: clamp(16px, 4.5vw, 22px);
+  }
 }
 
 /* AJUSTES RESPONSIVE PARA EL CONTADOR (CORREGIDO) */
@@ -690,7 +702,7 @@ header.hero::before {
   }
 
   .countdown-item .countdown-label {
-    font-size: 12px; /* Y la etiqueta también */
+    font-size: 14px; /* Y la etiqueta también */
   }
 }
 
