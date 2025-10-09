@@ -833,6 +833,10 @@ body.no-scroll {
   max-width: 100ch;
 }
 
+#horaris p {
+  color: #000000; /* <-- Cambia este valor por el color que desees */
+}
+
 /* 2. En pantallas de más de 900px, en lugar de crear dos columnas,
       simplemente hacemos que el contenido no ocupe todo el ancho. */
 @media (min-width: 901px) {
@@ -915,7 +919,7 @@ body.no-scroll {
   margin: 0 auto 48px auto;
   font-size: clamp(14px, 2.4vw, 20px);
   line-height: 1.8;
-  color: #555;
+  color: #000000;
 }
 
 .hotel-list {
