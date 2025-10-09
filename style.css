@@ -835,7 +835,7 @@ body.no-scroll {
 }
 
 #horaris p {
-  color: #A57C5B; /* <-- Cambia este valor por el color que desees */
+  color: #000000; /* <-- Cambia este valor por el color que desees */
 }
 
 /* 2. En pantallas de más de 900px, en lugar de crear dos columnas,
