@@ -675,26 +675,25 @@ header.hero::before {
   }
 
   /* ======================================================= */
-  /* ==== NUEVA GALERÍA MÓVIL (SCROLL-SNAP + JS) ==== */
+  /* ==== GALERÍA MÓVIL (VERSIÓN CORREGIDA Y DEFINITIVA) ==== */
   /* ======================================================= */
 
-  /* Ajustamos la sección para que tenga un fondo y padding adecuados */
+  /* La sección contenedora principal */
   .new-gallery-section {
-    padding-top: 40px;
-    padding-bottom: 60px;
-    background-color: #f8f8f8; /* Un fondo suave para destacar las fotos */
+    padding: 40px 0 60px 0; /* Padding vertical, sin padding horizontal */
+    background-color: #f8f8f8;
   }
 
-  /* 1. El Contenedor (la "ventana" por donde se mira) */
+  /* 1. El Contenedor (la "ventana" de scroll) */
   .overlapping-carousel-container {
-    /* Habilitamos el scroll horizontal y el anclaje (snap) */
+    /* Habilitamos el scroll y el anclaje */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    -webkit-overflow-scrolling: touch;
     
-    /* Ocultamos la barra de scroll para un look más limpio */
+    /* Ocultamos la barra de scroll de forma consistente */
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE y Edge */
+    -ms-overflow-style: none; /* IE y Edge */
   }
   .overlapping-carousel-container::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
@@ -702,34 +701,39 @@ header.hero::before {
 
   /* 2. La Fila de Imágenes (el "track" que se mueve) */
   .overlapping-carousel {
-    /* Lo volvemos a poner en el flujo normal del documento */
-    position: static; 
+    /* Usamos flexbox para alinear las imágenes en una fila */
     display: flex;
-    align-items: center; /* Centramos las imágenes verticalmente */
+    align-items: center; /* Centradas verticalmente */
     
-    /* Espacio a los lados para que la primera y última foto puedan centrarse */
-    /* (100% de la ventana - 70vw de la imagen) / 2 = 15vw */
-    padding: 0 15vw; 
+    /* CLAVE: Padding a los lados del track. Esto crea el espacio
+      necesario para que la primera y última imagen puedan
+      llegar al centro del viewport. */
+    /* (100vw - 65vw de la imagen) / 2 = 17.5vw */
+    padding: 0 17.5vw;
     
-    /* Reseteamos cualquier transformación del modo escritorio */
+    /* Espacio de 16px entre cada imagen */
+    gap: 16px;
+
+    /* Reseteamos cualquier estilo de la versión de escritorio */
+    position: static;
     transform: none !important;
+    min-height: 250px; /* Evita que el contenedor colapse */
   }
 
   /* 3. Cada Imagen Individual */
   .overlapping-image {
-    /* Cada imagen ocupará el 70% del ancho de la pantalla */
-    flex: 0 0 70vw; 
-    width: 70vw;
+    /* La imagen ocupará el 65% del ancho de la pantalla */
+    flex: 0 0 65vw;
+    width: 65vw;
     
     /* Cada imagen es un punto de anclaje que debe centrarse */
     scroll-snap-align: center;
     
-    /* Espacio entre las imágenes */
-    margin: 0 10px;
+    margin: 0; /* 'gap' maneja el espaciado */
     
     /* Estilos por defecto (cuando NO está activa) */
-    transform: scale(0.85); /* La hacemos un 15% más pequeña */
-    filter: grayscale(60%); /* Le quitamos algo de color */
+    transform: scale(0.85);
+    filter: grayscale(60%);
     opacity: 0.8;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -737,13 +741,14 @@ header.hero::before {
     /* Transición suave para todos los cambios */
     transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
   }
-  
+    
   /* 4. Estilo de la imagen ACTIVA (la que está en el centro) */
   .overlapping-image.active {
-    transform: scale(1); /* Vuelve a su tamaño original */
-    filter: none;        /* Recupera todo el color */
+    transform: scale(1);
+    filter: none;
     opacity: 1;
   }
+
 }
 
 /* AJUSTES RESPONSIVE PARA EL CONTADOR (CORREGIDO) */

@@ -260,8 +260,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- DISPATCHER: Decide qué carrusel iniciar ---
-    // Comprueba el ancho de la ventana: si es mayor a 768px, usa la versión de escritorio.
-    // Si no, activa la nueva versión móvil.
     if (window.matchMedia("(min-width: 769px)").matches) {
         initDesktopCarousel();
     } else {
