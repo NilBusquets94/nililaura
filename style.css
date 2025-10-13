@@ -659,6 +659,18 @@ header.hero::before {
     color: #000;
   }
 
+  .nav-links[data-visible="true"] { transform: translateX(0); }
+
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    opacity: 0; visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+    z-index: 1990;
+  }
+  body.menu-open .menu-overlay { opacity: 1; visibility: visible; }
+
   /* --- Aumento de tamaño para textos en móvil --- */
   .hero p,
   .text-container p,
@@ -1144,26 +1156,6 @@ body.no-scroll {
     grid-auto-columns: 70vw;   /* slide principal ocupa 80% */
     gap: 0px;                  /* ajústalo si quieres menos/más aire */
     padding-inline: 15vw;      /* 10% a izquierda y derecha */
-  }
-}
-
-/* Solo móvil */
-@media (max-width: 768px) {
-  .menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity .25s ease, visibility .25s ease;
-    z-index: 1990; /* por debajo del panel del menú */
-    pointer-events: none; /* no bloquea scroll por sí misma */
-  }
-  /* Mostrar overlay mientras el menú esté abierto (estado global) */
-  body.menu-open .menu-overlay {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto; /* permite cerrar al tocar el fondo */
   }
 }
 

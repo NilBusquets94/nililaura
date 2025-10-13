@@ -120,7 +120,6 @@ document.getElementById('copy-button').addEventListener('click', function() {
 // ===== CÓDIGO SIMPLIFICADO PARA EL MENÚ MÓVIL =====
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const navLinks2 = document.getElementById('primary-navigation');
-const overlay = document.querySelector('.menu-overlay');
 
 hamburgerBtn.addEventListener('click', () => {
     const isVisible = navLinks2.getAttribute('data-visible') === 'true';
@@ -286,21 +285,31 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
 })();
 
 
-function openMenu() {
-  navLinks2.setAttribute('data-visible','true');
-  hamburgerBtn.setAttribute('aria-expanded','true');
-  document.body.classList.add('menu-open');   // activa overlay persistente
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburgerBtn2 = document.getElementById('hamburger-btn');
+  const navPanel = document.getElementById('primary-navigation');
+  const overlay = document.querySelector('.menu-overlay');
 
-function closeMenu() {
-  navLinks2.setAttribute('data-visible','false');
-  hamburgerBtn.setAttribute('aria-expanded','false');
-  document.body.classList.remove('menu-open'); // oculta overlay
-}
+  if (!hamburgerBtn2 || !navPanel || !overlay) return; // evita errores silenciosos
 
-hamburgerBtn.addEventListener('click', () => {
-  const open = navLinks2.getAttribute('data-visible') === 'true';
-  open ? closeMenu() : openMenu();
+  const openMenu = () => {
+    navPanel.setAttribute('data-visible', 'true');
+    hamburgerBtn2.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open'); // muestra overlay persistente
+  };
+
+  const closeMenu = () => {
+    navPanel.setAttribute('data-visible', 'false');
+    hamburgerBtn2.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open'); // oculta overlay
+  };
+
+  const toggleMenu = () => {
+    const isOpen = navPanel.getAttribute('data-visible') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  };
+
+  hamburgerBtn2.addEventListener('click', toggleMenu, { passive: true });
+  overlay.addEventListener('click', closeMenu, { passive: true });
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', closeMenu, { passive: true }));
 });
-
-overlay.addEventListener('click', closeMenu);
