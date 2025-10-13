@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 // ===== CÓDIGO PARA COPIAR LA DIRECCIÓN =====
 document.getElementById('copy-address-btn').addEventListener('click', function() {
     const addressText = document.getElementById('address-text').innerText;
@@ -191,4 +192,67 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
     }).catch(err => {
         console.error('Error al copiar la dirección: ', err);
     });
+});
+
+
+// ===== CÓDIGO FINAL PARA EL CARRUSEL DE IMÁGENES (CENTRADO CORREGIDO) =====
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselContainer = document.querySelector('.overlapping-carousel-container');
+    const carousel = document.querySelector('.overlapping-carousel');
+    const images = document.querySelectorAll('.overlapping-image');
+
+    if (!carouselContainer || !carousel || images.length === 0) {
+        return; // Salir si no se encuentran los elementos
+    }
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        // Asegurarse de que el índice esté dentro de los límites
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex >= images.length) currentIndex = images.length - 1;
+
+        const imageToCenter = images[currentIndex];
+        
+        // El centro del contenedor (la "ventana")
+        const containerCenter = carouselContainer.offsetWidth / 2;
+        
+        // El centro de la imagen que queremos centrar (relativo al inicio de la fila de imágenes)
+        const imageCenter = imageToCenter.offsetLeft + (imageToCenter.offsetWidth / 2);
+        
+        // Calculamos cuánto hay que mover la fila de imágenes hacia la izquierda
+        const targetTranslateX = containerCenter - imageCenter;
+        
+        // Aplicamos el movimiento a la fila de imágenes
+        carousel.style.transform = `translateY(-50%) translateX(${targetTranslateX}px)`;
+
+        // Aplicamos la clase 'active' a la imagen central y se la quitamos a las demás
+        images.forEach((img, index) => {
+            if (index === currentIndex) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
+    }
+
+    // Añadimos un evento de clic a cada imagen
+    images.forEach((image, index) => {
+        image.addEventListener('click', function() {
+            currentIndex = index; // Actualizamos el índice a la imagen pulsada
+            updateCarousel(); // Movemos el carrusel
+        });
+    });
+
+    // Al cargar la página, centramos la imagen de en medio
+    if (images.length > 0) {
+        currentIndex = Math.floor(images.length / 2);
+        // Usamos un pequeño retraso para asegurar que todas las imágenes han cargado sus dimensiones
+        setTimeout(() => {
+            updateCarousel();
+        }, 100);
+    }
+    
+    // Si el tamaño de la ventana cambia, volvemos a centrar el carrusel
+    window.addEventListener('resize', updateCarousel);
 });
