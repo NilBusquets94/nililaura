@@ -672,7 +672,7 @@ header.hero::before {
   body.menu-open .menu-overlay { opacity: 1; visibility: visible; }
 
   .btn-calendar {
-    padding: 16px 24px; /* Augmenta el primer valor per a més alçada */
+    padding: 12px 24px; /* Augmenta el primer valor per a més alçada */
     font-size: 16px;    /* Opcional: augmenta la lletra */
   }
 
