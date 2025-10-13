@@ -660,13 +660,16 @@ header.hero::before {
   }
 
   .overlapping-carousel-container {
-      /* Habilita el scroll horizontal y lo hace suave en dispositivos táctiles */
+      /* Habilita el scroll horizontal */
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-
+      
       /* Ocultamos la barra de scroll visualmente */
       scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none;  /* IE y Edge */
+      -ms-overflow-style: none; /* IE y Edge */
+
+      /* ¡LA MAGIA DEL SWIPE! Hacemos que el scroll se ancle a las imágenes */
+      scroll-snap-type: x mandatory; 
+      -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
   }
 
   .overlapping-carousel-container::-webkit-scrollbar {
@@ -674,24 +677,29 @@ header.hero::before {
   }
 
   .overlapping-carousel {
-      /* Eliminamos la posición absoluta para permitir el scroll nativo */
       position: relative; 
       left: auto;
-      
-      /* Añadimos un relleno lateral generoso para que las imágenes de los extremos no queden cortadas */
-      padding: 0 30vw;
+
+      /* Ajustamos el padding para que la primera y última imagen puedan centrarse perfectamente.
+         Calculado como: (100vw - 70vw) / 2 = 15vw */
+      padding: 0 15vw;
   }
 
   .overlapping-image {
-      /* Hacemos las imágenes un poco más pequeñas para que quepan más en la pantalla */
-      width: 55vw; /* Ancho de la imagen (55% del ancho de la pantalla) */
-      margin: 0 5px; /* Reducimos el margen base en móvil */
+      /* 1. Ajustamos el ancho de la imagen para que se vean las de los lados */
+      width: 70vw; /* Ocupará el 70% del ancho de la pantalla */
+      
+      /* 2. Definimos que cada imagen es un punto de anclaje para el scroll */
+      scroll-snap-align: center;
+      
+      margin: 0 10px; /* Un pequeño margen entre imágenes */
   }
 
   .overlapping-image.active {
-      /* Ajustamos el margen de la imagen activa en móvil */
-      margin: 0 15px;
-      transform: scale(1.1); /* Hacemos el zoom un poco más sutil en móvil */
+      /* En móvil, el "zoom" lo controlará el propio scroll,
+         así que simplificamos el estilo de la imagen activa. */
+      margin: 0 10px; /* Mantenemos el mismo margen para evitar saltos */
+      transform: scale(1); /* Quitamos el zoom para una experiencia más fluida */
   }
 
   /* --- Aumento de tamaño para textos en móvil --- */
