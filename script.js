@@ -117,30 +117,6 @@ document.getElementById('copy-button').addEventListener('click', function() {
     });
 });
 
-// ===== CÓDIGO SIMPLIFICADO PARA EL MENÚ MÓVIL =====
-const hamburgerBtn = document.getElementById('hamburger-btn');
-const navLinks2 = document.getElementById('primary-navigation');
-
-hamburgerBtn.addEventListener('click', () => {
-    const isVisible = navLinks2.getAttribute('data-visible') === 'true';
-
-    if (isVisible) {
-        navLinks2.setAttribute('data-visible', 'false');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-    } else {
-        navLinks2.setAttribute('data-visible', 'true');
-        hamburgerBtn.setAttribute('aria-expanded', 'true');
-    }
-});
-
-// Cierra el menú al hacer clic en un enlace
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks2.setAttribute('data-visible', 'false');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-    });
-});
-
 // ===== CÓDIGO CORREGIDO PARA EL POP-UP DE LA IMAGEN DE HORARIOS =====
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener los elementos del DOM
@@ -285,6 +261,7 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
 })();
 
 
+// ===== CÓDIGO ÚNICO Y FUNCIONAL PARA EL MENÚ MÓVIL =====
 document.addEventListener('DOMContentLoaded', () => {
   const hamburgerBtn2 = document.getElementById('hamburger-btn');
   const navPanel = document.getElementById('primary-navigation');
