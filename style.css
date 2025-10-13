@@ -660,29 +660,38 @@ header.hero::before {
   }
 
   .overlapping-carousel-container {
-      /* Enables a smooth, native-like scrolling experience on touch devices */
+      /* Habilita el scroll horizontal y lo hace suave en dispositivos táctiles */
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      /* Hides the scrollbar */
+
+      /* Ocultamos la barra de scroll visualmente */
       scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none;  /* IE and Edge */
+      -ms-overflow-style: none;  /* IE y Edge */
   }
+
   .overlapping-carousel-container::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      display: none; /* Chrome, Safari, etc. */
   }
+
   .overlapping-carousel {
-      /* Adds padding so the first and last images don't stick to the edges */
-      padding: 0 20vw;
+      /* Eliminamos la posición absoluta para permitir el scroll nativo */
+      position: relative; 
+      left: auto;
+      
+      /* Añadimos un relleno lateral generoso para que las imágenes de los extremos no queden cortadas */
+      padding: 0 30vw;
   }
+
   .overlapping-image {
-      width: 60vw; /* Images will be 60% of the viewport width */
-      aspect-ratio: 4 / 3; /* Maintains the 4:3 ratio */
-      height: auto; /* Height is now automatic based on aspect ratio */
-      margin: 0 10px; /* Adjusts the base margin for mobile */
+      /* Hacemos las imágenes un poco más pequeñas para que quepan más en la pantalla */
+      width: 55vw; /* Ancho de la imagen (55% del ancho de la pantalla) */
+      margin: 0 5px; /* Reducimos el margen base en móvil */
   }
+
   .overlapping-image.active {
-      transform: scale(1.1); /* Slightly smaller active scale for mobile */
-      margin: 0 25px; /* Adjusts the active margin for mobile */
+      /* Ajustamos el margen de la imagen activa en móvil */
+      margin: 0 15px;
+      transform: scale(1.1); /* Hacemos el zoom un poco más sutil en móvil */
   }
 
   /* --- Aumento de tamaño para textos en móvil --- */
