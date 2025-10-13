@@ -147,16 +147,40 @@
             
         </div>
     </section>
-    <section class="new-gallery-section">
-        <h2>Els nostres moments</h2>
-        <div class="overlapping-carousel-container">
-            <div class="overlapping-carousel">
-                <img src="banner_image1.jpeg" alt="Imatge de la galeria 1" class="overlapping-image">
-                <img src="banner_image2.jpeg" alt="Imatge de la galeria 2" class="overlapping-image">
-                <img src="banner_image3.jpeg" alt="Imatge de la galeria 3" class="overlapping-image">
-                <img src="banner_image4.jpeg" alt="Imatge de la galeria 4" class="overlapping-image">
-                <img src="banner_image5.jpeg" alt="Imatge de la galeria 5" class="overlapping-image">
-                </div>
+    <section id="moments" class="carousel-section">
+        <div class="carousel-container">
+            <h2>Els nostres moments</h2>
+
+            <div class="carousel-viewport" aria-label="Carrusel de records">
+                <ul class="carousel-track" id="photos-track">
+                    <!-- Item activo inicial -->
+                    <li class="carousel-slide">
+                    <button class="slide-btn" type="button">
+                        <img src="banner_image1.jpeg" alt="Moment 1">
+                    </button>
+                    </li>
+                    <li class="carousel-slide">
+                    <button class="slide-btn" type="button">
+                        <img src="banner_image2.jpeg" alt="Moment 2">
+                    </button>
+                    </li>
+                    <li class="carousel-slide is-active">
+                    <button class="slide-btn" type="button">
+                        <img src="banner_image3.jpeg" alt="Moment 3">
+                    </button>
+                    </li>
+                    <li class="carousel-slide">
+                    <button class="slide-btn" type="button">
+                        <img src="banner_image4.jpeg" alt="Moment 4">
+                    </button>
+                    </li>
+                    <li class="carousel-slide">
+                    <button class="slide-btn" type="button">
+                        <img src="banner_image5.jpeg" alt="Moment 5">
+                    </button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
     <section class="countdown-section">

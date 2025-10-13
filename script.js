@@ -195,74 +195,38 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
 });
 
 
-// ===== CÓDIGO DEL CARRUSEL (V2: ESCRITORIO + MÓVIL) =====
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.querySelector('.overlapping-carousel');
-    const images = document.querySelectorAll('.overlapping-image');
+// ===== CÓDIGO PARA CARRUSEL DE IMAGENES =====
+(function () {
+  const track = document.getElementById('photos-track');
+  if (!track) return;
 
-    if (!carousel || images.length === 0) {
-        return; // No hace nada si no existe la galería
-    }
+  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
 
-    // --- LÓGICA PARA MÓVIL (Usando Intersection Observer) ---
-    function initMobileCarousel() {
-        const observerOptions = {
-            root: document.querySelector('.overlapping-carousel-container'),
-            rootMargin: '0px',
-            threshold: 0.5 // Se activa cuando el 50% de la imagen es visible
-        };
+  function activateAndCenter(targetSlide) {
+    slides.forEach(s => s.classList.remove('is-active'));
+    targetSlide.classList.add('is-active');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Primero, quita la clase 'active' de todas las imágenes
-                    images.forEach(img => img.classList.remove('active'));
-                    // Luego, añade la clase 'active' solo a la que está en el centro
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+    const viewport = track;
+    const slideRect = targetSlide.getBoundingClientRect();
+    const vpRect = viewport.getBoundingClientRect();
+    const currentScroll = viewport.scrollLeft;
+    const slideCenter = slideRect.left - vpRect.left + currentScroll + slideRect.width / 2;
+    const targetScrollLeft = Math.max(0, slideCenter - vpRect.width / 2);
+    viewport.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+  }
 
-        // Observa cada una de las imágenes
-        images.forEach(image => {
-            observer.observe(image);
-        });
-    }
+  track.addEventListener('click', (e) => {
+    const btn = e.target.closest('.slide-btn');
+    if (!btn) return;
+    const slide = btn.closest('.carousel-slide');
+    activateAndCenter(slide);
+  });
 
-    // --- LÓGICA PARA ESCRITORIO (La que ya tenías) ---
-    function initDesktopCarousel() {
-        const carouselContainer = document.querySelector('.overlapping-carousel-container');
-        let currentIndex = Math.floor(images.length / 2); // Empezar por la del medio
+  window.addEventListener('resize', () => {
+    const active = track.querySelector('.carousel-slide.is-active') || slides[0];
+    if (active) activateAndCenter(active);
+  });
 
-        function updateCarousel() {
-            const imageToCenter = images[currentIndex];
-            const containerCenter = carouselContainer.offsetWidth / 2;
-            const imageCenter = imageToCenter.offsetLeft + (imageToCenter.offsetWidth / 2);
-            const targetTranslateX = containerCenter - imageCenter;
-            
-            carousel.style.transform = `translateY(-50%) translateX(${targetTranslateX}px)`;
-
-            images.forEach((img, index) => {
-                img.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        images.forEach((image, index) => {
-            image.addEventListener('click', function() {
-                currentIndex = index;
-                updateCarousel();
-            });
-        });
-
-        // Centrar al inicio y si cambia el tamaño de la ventana
-        setTimeout(updateCarousel, 100);
-        window.addEventListener('resize', updateCarousel);
-    }
-
-    // --- DISPATCHER: Decide qué carrusel iniciar ---
-    if (window.matchMedia("(min-width: 769px)").matches) {
-        initDesktopCarousel();
-    } else {
-        initMobileCarousel();
-    }
-});
+  const initial = track.querySelector('.carousel-slide.is-active') || slides[0];
+  if (initial) activateAndCenter(initial);
+})();
