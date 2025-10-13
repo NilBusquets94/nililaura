@@ -16,8 +16,6 @@ const secondsProgress = document.getElementById('seconds-progress');
 const radius = daysProgress.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
 
-const overlay = document.querySelector('.menu-overlay');
-
 
 // Inicialitza els cercles
 [daysProgress, hoursProgress, minutesProgress, secondsProgress].forEach(circle => {
@@ -122,6 +120,7 @@ document.getElementById('copy-button').addEventListener('click', function() {
 // ===== CÓDIGO SIMPLIFICADO PARA EL MENÚ MÓVIL =====
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const navLinks2 = document.getElementById('primary-navigation');
+const overlay = document.querySelector('.menu-overlay');
 
 hamburgerBtn.addEventListener('click', () => {
     const isVisible = navLinks2.getAttribute('data-visible') === 'true';
@@ -287,9 +286,21 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
 })();
 
 
+function openMenu() {
+  navLinks2.setAttribute('data-visible','true');
+  hamburgerBtn.setAttribute('aria-expanded','true');
+  document.body.classList.add('menu-open');   // activa overlay persistente
+}
+
 function closeMenu() {
   navLinks2.setAttribute('data-visible','false');
   hamburgerBtn.setAttribute('aria-expanded','false');
+  document.body.classList.remove('menu-open'); // oculta overlay
 }
+
+hamburgerBtn.addEventListener('click', () => {
+  const open = navLinks2.getAttribute('data-visible') === 'true';
+  open ? closeMenu() : openMenu();
+});
 
 overlay.addEventListener('click', closeMenu);
