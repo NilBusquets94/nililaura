@@ -127,7 +127,7 @@ header.hero::before {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1010;
   padding: 15px 30px;
   display: flex;
   /* MODIFICADO: Alineado a la izquierda */
@@ -667,9 +667,14 @@ header.hero::before {
     background: rgba(0,0,0,.55);
     opacity: 0; visibility: hidden;
     transition: opacity .25s ease, visibility .25s ease;
-    z-index: 1990;
+    z-index: 1000;
   }
   body.menu-open .menu-overlay { opacity: 1; visibility: visible; }
+
+  .btn-calendar {
+    padding: 16px 24px; /* Augmenta el primer valor per a més alçada */
+    font-size: 16px;    /* Opcional: augmenta la lletra */
+  }
 
   /* --- Aumento de tamaño para textos en móvil --- */
   .hero p,
