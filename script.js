@@ -195,24 +195,46 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
 });
 
 
-// ===== CÓDIGO DEL CARRUSEL (MODIFICADO PARA IGNORAR MÓVILES) =====
+// ===== CÓDIGO DEL CARRUSEL (V2: ESCRITORIO + MÓVIL) =====
 document.addEventListener('DOMContentLoaded', function() {
-    const carouselContainer = document.querySelector('.overlapping-carousel-container');
     const carousel = document.querySelector('.overlapping-carousel');
     const images = document.querySelectorAll('.overlapping-image');
 
-    // Función que se ejecutará solo en escritorio
-    function initDesktopCarousel() {
-        if (!carouselContainer || !carousel || images.length === 0) {
-            return;
-        }
+    if (!carousel || images.length === 0) {
+        return; // No hace nada si no existe la galería
+    }
 
-        let currentIndex = Math.floor(images.length / 2);
+    // --- LÓGICA PARA MÓVIL (Usando Intersection Observer) ---
+    function initMobileCarousel() {
+        const observerOptions = {
+            root: document.querySelector('.overlapping-carousel-container'),
+            rootMargin: '0px',
+            threshold: 0.5 // Se activa cuando el 50% de la imagen es visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Primero, quita la clase 'active' de todas las imágenes
+                    images.forEach(img => img.classList.remove('active'));
+                    // Luego, añade la clase 'active' solo a la que está en el centro
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observa cada una de las imágenes
+        images.forEach(image => {
+            observer.observe(image);
+        });
+    }
+
+    // --- LÓGICA PARA ESCRITORIO (La que ya tenías) ---
+    function initDesktopCarousel() {
+        const carouselContainer = document.querySelector('.overlapping-carousel-container');
+        let currentIndex = Math.floor(images.length / 2); // Empezar por la del medio
 
         function updateCarousel() {
-            if (currentIndex < 0) currentIndex = 0;
-            if (currentIndex >= images.length) currentIndex = images.length - 1;
-
             const imageToCenter = images[currentIndex];
             const containerCenter = carouselContainer.offsetWidth / 2;
             const imageCenter = imageToCenter.offsetLeft + (imageToCenter.offsetWidth / 2);
@@ -232,15 +254,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Centramos la imagen inicial y la actualizamos si cambia el tamaño de la ventana
+        // Centrar al inicio y si cambia el tamaño de la ventana
         setTimeout(updateCarousel, 100);
         window.addEventListener('resize', updateCarousel);
     }
 
-    // --- ¡LA CLAVE ESTÁ AQUÍ! ---
-    // Comprobamos el ancho de la ventana. Si es mayor que 768px, activamos el carrusel de escritorio.
-    // Si no, no hacemos nada y dejamos que el CSS controle el swipe en móvil.
+    // --- DISPATCHER: Decide qué carrusel iniciar ---
+    // Comprueba el ancho de la ventana: si es mayor a 768px, usa la versión de escritorio.
+    // Si no, activa la nueva versión móvil.
     if (window.matchMedia("(min-width: 769px)").matches) {
         initDesktopCarousel();
+    } else {
+        initMobileCarousel();
     }
 });
