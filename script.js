@@ -196,37 +196,89 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
 
 
 // ===== CÓDIGO PARA CARRUSEL DE IMAGENES =====
+// ===== Carrusel 4:3 — versión unificada y robusta =====
 (function () {
-  const track = document.getElementById('photos-track');
-  if (!track) return;
+  function initCarousel() {
+    const track = document.getElementById('photos-track');
+    if (!track) return; // no hay carrusel en esta página
 
-  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+    const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+    if (slides.length === 0) return;
 
-  function activateAndCenter(targetSlide) {
-    slides.forEach(s => s.classList.remove('is-active'));
-    targetSlide.classList.add('is-active');
+    // Activa y opcionalmente centra
+    function activateAndCenter(targetSlide, center = true) {
+      if (!targetSlide) return;
+      slides.forEach(s => s.classList.remove('is-active'));
+      targetSlide.classList.add('is-active');
 
-    const viewport = track;
-    const slideRect = targetSlide.getBoundingClientRect();
-    const vpRect = viewport.getBoundingClientRect();
-    const currentScroll = viewport.scrollLeft;
-    const slideCenter = slideRect.left - vpRect.left + currentScroll + slideRect.width / 2;
-    const targetScrollLeft = Math.max(0, slideCenter - vpRect.width / 2);
-    viewport.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+      if (!center) return;
+
+      const viewport = track;
+      const slideRect = targetSlide.getBoundingClientRect();
+      const vpRect = viewport.getBoundingClientRect();
+      const currentScroll = viewport.scrollLeft;
+      const slideCenter = slideRect.left - vpRect.left + currentScroll + slideRect.width / 2;
+      const targetScrollLeft = Math.max(0, slideCenter - vpRect.width / 2);
+      viewport.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+    }
+
+    // Click en miniatura
+    track.addEventListener('click', (e) => {
+      const btn = e.target.closest('.slide-btn');
+      if (!btn || !track.contains(btn)) return;
+      const slide = btn.closest('.carousel-slide');
+      activateAndCenter(slide, true);
+    });
+
+    // Selección inicial: tercera si existe, si no la primera
+    const initial = track.querySelector('.carousel-slide.is-active') || slides[2] || slides[0];
+    activateAndCenter(initial, true);
+
+    // Mantener centrada al redimensionar
+    window.addEventListener('resize', () => {
+      const active = track.querySelector('.carousel-slide.is-active') || slides[2] || slides[0];
+      activateAndCenter(active, true);
+    });
+
+    // Auto-activar por visibilidad (>50%) en móvil
+    function enableMobileAutoActive() {
+      if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+      const io = new IntersectionObserver((entries) => {
+        const candidates = entries
+          .filter(e => e.isIntersecting && e.intersectionRatio >= 0.5)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (candidates.length) {
+          const slide = candidates[0].target;
+          if (!slide.classList.contains('is-active')) {
+            // Marca sin recentrar inmediato; un pequeño snap luego
+            activateAndCenter(slide, false);
+          }
+        }
+      }, { root: track, threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+      slides.forEach(slide => io.observe(slide));
+
+      // Snap suave al final del scroll
+      let t;
+      track.addEventListener('scroll', () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+          const active = track.querySelector('.carousel-slide.is-active');
+          if (active) activateAndCenter(active, true);
+        }, 120);
+      }, { passive: true });
+    }
+
+    enableMobileAutoActive();
+    window.addEventListener('resize', enableMobileAutoActive);
   }
 
-  track.addEventListener('click', (e) => {
-    const btn = e.target.closest('.slide-btn');
-    if (!btn) return;
-    const slide = btn.closest('.carousel-slide');
-    activateAndCenter(slide);
-  });
-
-  window.addEventListener('resize', () => {
-    const active = track.querySelector('.carousel-slide.is-active') || slides[0];
-    if (active) activateAndCenter(active);
-  });
-
-  const initial = track.querySelector('.carousel-slide.is-active') || slides[0];
-  if (initial) activateAndCenter(initial);
+  // Espera al DOM si aún no está cargado
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel, { once: true });
+  } else {
+    initCarousel();
+  }
 })();
