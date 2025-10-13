@@ -1136,5 +1136,9 @@ body.no-scroll {
 
 @media (max-width: 768px) {
   .carousel-section { padding: 56px 16px; }
-  .carousel-track { grid-auto-columns: 85vw; } /* imatge gran a mòbil */
+  .carousel-track {
+    grid-auto-columns: 60vw;   /* slide principal ocupa 60% */
+    gap: 8px;                  /* ajústalo si quieres menos/más aire */
+    padding-inline: 20vw;      /* 20% a izquierda y derecha */
+  }
 }
