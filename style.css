@@ -658,48 +658,54 @@ header.hero::before {
   .nav-links a.active {
     color: #000;
   }
-
+  
+  /* 1. El Contenedor (la "ventana" por la que miramos) */
   .overlapping-carousel-container {
-      /* Habilita el scroll horizontal */
-      overflow-x: auto;
-      
-      /* Ocultamos la barra de scroll visualmente */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE y Edge */
+    /* Habilitamos el deslizamiento horizontal nativo */
+    overflow-x: auto;
+    
+    /* ¡LA CLAVE! Activamos el "snap" para que se ancle a las imágenes */
+    scroll-snap-type: x mandatory;
 
-      /* ¡LA MAGIA DEL SWIPE! Hacemos que el scroll se ancle a las imágenes */
-      scroll-snap-type: x mandatory; 
-      -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    /* Ocultamos la barra de scroll para que no se vea */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE y Edge */
   }
-
   .overlapping-carousel-container::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, etc. */
+    display: none; /* Chrome, Safari */
   }
 
+  /* 2. La Fila de Imágenes */
   .overlapping-carousel {
-      position: relative; 
-      left: auto;
+    /* Ya no necesita ser absoluto. Lo dejamos como un flexbox simple */
+    position: relative;
+    display: flex;
+    align-items: center;
 
-      /* Ajustamos el padding para que la primera y última imagen puedan centrarse perfectamente.
-         Calculado como: (100vw - 70vw) / 2 = 15vw */
-      padding: 0 15vw;
+    /* Espacio al principio y al final para que la primera y última
+       imagen puedan centrarse correctamente.
+       Cálculo: (100% de la pantalla - 70% de la imagen) / 2 = 15% */
+    padding: 0 15vw;
+    
+    /* Reseteamos transformaciones que venían del escritorio y JS */
+    transform: none !important;
   }
 
+  /* 3. Cada Imagen */
   .overlapping-image {
-      /* 1. Ajustamos el ancho de la imagen para que se vean las de los lados */
-      width: 70vw; /* Ocupará el 70% del ancho de la pantalla */
-      
-      /* 2. Definimos que cada imagen es un punto de anclaje para el scroll */
-      scroll-snap-align: center;
-      
-      margin: 0 10px; /* Un pequeño margen entre imágenes */
-  }
+    /* Cada imagen debe ocupar el 70% del ancho de la pantalla */
+    flex: 0 0 70vw;
+    width: 70vw;
 
-  .overlapping-image.active {
-      /* En móvil, el "zoom" lo controlará el propio scroll,
-         así que simplificamos el estilo de la imagen activa. */
-      margin: 0 10px; /* Mantenemos el mismo margen para evitar saltos */
-      transform: scale(1); /* Quitamos el zoom para una experiencia más fluida */
+    /* Cada imagen es un punto de anclaje que se debe centrar */
+    scroll-snap-align: center;
+    
+    /* Reseteamos los estilos de la clase .active, ya no los necesitamos en móvil */
+    transform: scale(1) !important;
+    filter: none !important;
+    opacity: 1 !important;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Sombra suave para todas */
+    margin: 0 10px; /* Margen simple entre imágenes */
   }
 
   /* --- Aumento de tamaño para textos en móvil --- */
