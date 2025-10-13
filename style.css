@@ -1146,3 +1146,30 @@ body.no-scroll {
     padding-inline: 15vw;      /* 10% a izquierda y derecha */
   }
 }
+
+/* Solo móvil */
+@media (max-width: 768px) {
+  /* Capa gris detrás del menú */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+    z-index: 1990; /* por debajo del panel del menú */
+  }
+  /* Mostrar overlay SOLO cuando el menú esté abierto */
+  .nav-links[data-visible="true"] ~ .menu-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-section { 
+    margin-top: 0;
+    padding-top: 12px;
+    padding-bottom: 56px; /* más aire bajo */
+  }
+}

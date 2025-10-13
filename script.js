@@ -16,6 +16,9 @@ const secondsProgress = document.getElementById('seconds-progress');
 const radius = daysProgress.r.baseVal.value;
 const circumference = 2 * Math.PI * radius;
 
+const overlay = document.querySelector('.menu-overlay');
+
+
 // Inicialitza els cercles
 [daysProgress, hoursProgress, minutesProgress, secondsProgress].forEach(circle => {
     circle.style.strokeDasharray = circumference;
@@ -246,7 +249,7 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
 
       const io = new IntersectionObserver((entries) => {
         const candidates = entries
-          .filter(e => e.isIntersecting && e.intersectionRatio >= 0.5)
+          .filter(e => e.isIntersecting && e.intersectionRatio >= 0.6)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (candidates.length) {
@@ -282,3 +285,11 @@ document.getElementById('copy-address-btn').addEventListener('click', function()
     initCarousel();
   }
 })();
+
+
+function closeMenu() {
+  navLinks2.setAttribute('data-visible','false');
+  hamburgerBtn.setAttribute('aria-expanded','false');
+}
+
+overlay.addEventListener('click', closeMenu);
