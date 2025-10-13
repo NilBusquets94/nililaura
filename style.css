@@ -658,15 +658,27 @@ header.hero::before {
   .nav-links a.active {
     color: #000;
   }
-  
-  /* 1. El Contenedor (la "ventana" por la que miramos) */
+
+  /* === SOLUCIÓN DEFINITIVA PARA GALERÍA MÓVIL (ENFOQUE LIMPIO) === */
+
+  /* Ajustamos el padding de la sección para que respire mejor */
+  .new-gallery-section {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  /* 1. El Contenedor (la "ventana") */
   .overlapping-carousel-container {
+    /* ¡CLAVE! Eliminamos la altura fija para que se adapte al contenido */
+    height: auto;
+    
     /* Habilitamos el deslizamiento horizontal nativo */
     overflow-x: auto;
     
-    /* ¡LA CLAVE! Activamos el "snap" para que se ancle a las imágenes */
+    /* Activamos el "snap" para que se ancle a las imágenes */
     scroll-snap-type: x mandatory;
-
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    
     /* Ocultamos la barra de scroll para que no se vea */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE y Edge */
@@ -677,35 +689,41 @@ header.hero::before {
 
   /* 2. La Fila de Imágenes */
   .overlapping-carousel {
-    /* Ya no necesita ser absoluto. Lo dejamos como un flexbox simple */
+    /* Reseteamos por completo su posicionamiento y transformaciones */
     position: relative;
-    display: flex;
-    align-items: center;
-
-    /* Espacio al principio y al final para que la primera y última
-       imagen puedan centrarse correctamente.
-       Cálculo: (100% de la pantalla - 70% de la imagen) / 2 = 15% */
-    padding: 0 15vw;
-    
-    /* Reseteamos transformaciones que venían del escritorio y JS */
     transform: none !important;
+    top: auto;
+    left: auto;
+    height: auto; /* Altura automática */
+    
+    /* Dejamos un espacio a los lados para que la primera y última
+       imagen puedan centrarse. (100vw - 75vw) / 2 = 12.5vw */
+    padding: 0 12.5vw;
   }
 
-  /* 3. Cada Imagen */
+  /* 3. Cada Imagen Individual */
   .overlapping-image {
-    /* Cada imagen debe ocupar el 70% del ancho de la pantalla */
-    flex: 0 0 70vw;
-    width: 70vw;
-
-    /* Cada imagen es un punto de anclaje que se debe centrar */
+    /* Tamaño: cada imagen ocupará el 75% del ancho de la pantalla */
+    flex: 0 0 75vw;
+    width: 75vw;
+    
+    /* Mantenemos la proporción correcta de la imagen automáticamente */
+    aspect-ratio: 4 / 3;
+    
+    /* Cada imagen es un punto de anclaje que debe centrarse */
     scroll-snap-align: center;
     
-    /* Reseteamos los estilos de la clase .active, ya no los necesitamos en móvil */
-    transform: scale(1) !important;
+    /* Reseteamos cualquier estilo que venga del JS de escritorio */
+    transform: none !important;
     filter: none !important;
     opacity: 1 !important;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Sombra suave para todas */
-    margin: 0 10px; /* Margen simple entre imágenes */
+    
+    /* Añadimos un margen simple para separar las imágenes */
+    margin: 0 8px;
+    
+    /* Mantenemos una sombra y bordes redondeados consistentes */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
   /* --- Aumento de tamaño para textos en móvil --- */
