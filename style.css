@@ -316,13 +316,13 @@ header.hero::before {
 }
 
 /* ======================================================= */
-/* ==== ESTILS PER AL COMPTE ENRERE (VERSIÓ CORREGIDA) ==== */
+/* ==== ESTILS PER AL COMPTE ENRERE (VERSIÓ DEFINITIVA) ==== */
 /* ======================================================= */
 .countdown-section {
   padding: 80px 24px;
   background-color: #fff;
   text-align: center;
-  border-top: 1px solid #e5e5e5; /* <-- AÑADE ESTA LÍNEA */
+  border-top: 1px solid #e5e5e5;
 }
 
 .countdown-section h2 {
@@ -338,28 +338,28 @@ header.hero::before {
   gap: 32px;
 }
 
-/* 3. Canvi per al centrat perfecte */
 .countdown-item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* 3. Nou contenidor per aïllar el cercle i el número */
+/* 1. Contenidor del cercle (mida d'ESCRIPTORI) */
 .countdown-circle-container {
     position: relative;
     width: 120px;
     height: 120px;
 }
 
+/* 2. L'SVG (mida d'ESCRIPTORI) */
 .countdown-svg {
   width: 120px;
   height: 120px;
 }
 
+/* 3. Estils dels cercles (s'aplicaran SEMPRE) */
 .countdown-svg circle {
   fill: transparent;
-  /* 1. Línia més fina */
   stroke-width: 4; 
 }
 
@@ -371,11 +371,17 @@ header.hero::before {
   stroke: #009688;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.2s linear;
-  transform-origin: center;
+  
+  /* AQUESTA ÉS LA CLAU:
+    L'HTML defineix el viewBox="0 0 120 120" i el cercle a cx="60" cy="60".
+    El transform-origin SEMPRE serà el centre (50% 50%) d'aquest viewBox,
+    que és (60, 60). No el canviem MAI.
+  */
+  transform-origin: 50% 50%; 
   transform: rotate(-90deg) scaleY(-1); 
 }
 
-/* 3. El número ara va dins del nou contenidor */
+/* 4. El número (mida d'ESCRIPTORI) */
 .countdown-number {
   position: absolute;
   top: 50%;
@@ -386,6 +392,7 @@ header.hero::before {
   font-weight: 300;
 }
 
+/* 5. L'etiqueta (mida d'ESCRIPTORI) */
 .countdown-label {
   margin-top: 16px;
   font-size: clamp(14px, 2.4vw, 20px);
@@ -692,43 +699,39 @@ header.hero::before {
 
 }
 
-/* AJUSTES RESPONSIVE PARA EL CONTADOR (CORREGIDO) */
+/* ================================================== */
+/* ==== AJUSTOS RESPONSIVE PER AL COMPTADOR (NOU) ==== */
+/* ================================================== */
 @media (max-width: 500px) {
+  
   .countdown-container {
-    gap: 16px; /* Reducimos el espacio entre círculos */
-    /* Evita que los círculos se desborden en pantallas muy pequeñas */
+    gap: 16px; /* Reduïm l'espai entre cercles */
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  /* La clave es usar .countdown-item para aplicar los cambios a cada uno */
+  /* LA SOLUCIÓ:
+    Només canviem la mida del CONTENIDOR i de l'SVG.
+    El 'viewBox' (definit a l'HTML) s'encarregarà d'escalar
+    el cercle de 120px (amb cx/cy 60) perquè càpiga 
+    perfectament en aquest nou espai de 80px.
+    
+    NO TOQUEM 'cx', 'cy', 'r' NI 'transform-origin'.
+  */
   .countdown-item .countdown-circle-container,
   .countdown-item .countdown-svg {
-    width: 80px; /* Reducimos el tamaño de los círculos */
+    width: 80px; /* Reduïm la mida de l'SVG */
     height: 80px;
   }
   
-  /* Aseguramos que los círculos SVG internos se ajusten */
-  .countdown-item .countdown-svg circle {
-    r: 35;      /* Radio más pequeño */
-    cx: 40;     /* Nuevo centro X */
-    cy: 40;     /* Nuevo centro Y */
-    transform-origin: 40px 40px; /* o 50% 50% */
-  }
-
-  .countdown-item .countdown-svg circle.progress {
-    /* Això força l'origen a (40px, 40px) a mòbils,
-      corregint l'error d'Android sense trencar iOS.
-    */
-    transform-origin: 40px 40px;
-  }
+  /* Ja no necessitem la regla .countdown-item .countdown-svg circle {} */
 
   .countdown-item .countdown-number {
-    font-size: 24px; /* Hacemos el número más pequeño */
+    font-size: 24px; /* Fem el número més petit */
   }
 
   .countdown-item .countdown-label {
-    font-size: 14px; /* Y la etiqueta también */
+    font-size: 14px; /* I l'etiqueta també */
   }
 }
 
