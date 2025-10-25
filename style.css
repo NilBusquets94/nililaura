@@ -371,8 +371,7 @@ header.hero::before {
   stroke: #009688;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.2s linear;
-  /* 2. Canvi per a la direcció horària */
-  transform-origin: center;
+  transform-origin: 60px 60px; /* o 50% 50% */
   transform: rotate(-90deg) scaleY(-1); 
 }
 
@@ -714,6 +713,7 @@ header.hero::before {
     r: 35;      /* Radio más pequeño */
     cx: 40;     /* Nuevo centro X */
     cy: 40;     /* Nuevo centro Y */
+    transform-origin: 40px 40px; /* o 50% 50% */
   }
 
   .countdown-item .countdown-number {
